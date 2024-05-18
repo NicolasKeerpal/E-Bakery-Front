@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PipePipe } from './pipe.pipe';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
@@ -17,7 +18,6 @@ import { IngredientsComponent } from './components/ingredients/ingredients.compo
 @NgModule({
   declarations: [
     AppComponent,
-    PipePipe,
     HeaderComponent,
     FooterComponent,
     HomeComponent,
@@ -30,9 +30,12 @@ import { IngredientsComponent } from './components/ingredients/ingredients.compo
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
+    provideHttpClient(withFetch()),
     provideClientHydration()
   ],
   bootstrap: [AppComponent]
