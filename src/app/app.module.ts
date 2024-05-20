@@ -14,6 +14,9 @@ import { ProfilComponent } from './components/profil/profil.component';
 import { OurProductsComponent } from './components/our-products/our-products.component';
 import { CartComponent } from './components/cart/cart.component';
 import { IngredientsComponent } from './components/ingredients/ingredients.component';
+import { FoodCardComponent } from './components/food-card/food-card.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ExtractTabDataPipe } from './pipes/extract-tab-data.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { IngredientsComponent } from './components/ingredients/ingredients.compo
     ProfilComponent,
     OurProductsComponent,
     CartComponent,
-    IngredientsComponent
+    IngredientsComponent,
+    FoodCardComponent,
+    NotFoundComponent,
+    ExtractTabDataPipe
   ],
   imports: [
     BrowserModule,
