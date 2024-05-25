@@ -9,6 +9,11 @@ import { Food } from '../../models/food';
 })
 export class OurProductsComponent {
   foods: Food[] = [];
+  displayedFoods: Food[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 16;
+  totalItems: number = 0;
+  searchQuery: string = '';
 
   constructor(private foodService: FoodService) { }
 
@@ -16,11 +21,47 @@ export class OurProductsComponent {
     this.foodService.getFoods().subscribe(
       (data: Food[]) => {
         this.foods = data;
-        console.log('foods : ', this.foods); 
+        this.displayedFoods = data;
+        this.totalItems = data.length;
       },
       error => {
-        console.error('Erreur lors de la récupération des aliments', error);
+        console.error('Error', error);
       }
     );
+  }
+
+  filterFoods(): void {
+    this.displayedFoods = this.foods.filter(food => 
+      food.name.toLowerCase().startsWith(this.searchQuery.toLowerCase())
+    );
+    this.totalItems = this.displayedFoods.length;
+    this.currentPage = 1; 
+  }
+
+  get paginatedFoods(): Food[] {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.displayedFoods.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.totalItems / this.itemsPerPage);
+  }
+
+  nextPage(): void {
+    console.log('next');
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    } else {
+      this.currentPage = 1;
+    }
+  }
+
+  prevPage(): void {
+    console.log('prev');
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    } else {
+      this.currentPage = Math.ceil(this.totalItems / this.itemsPerPage);
+    }
   }
 }
