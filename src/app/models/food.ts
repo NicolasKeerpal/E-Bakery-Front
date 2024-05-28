@@ -1,1 +1,1 @@
-export interface Food{ id: number, name : string, price : number, description: string, stock: number }
+export interface Food{ id: number, name : string, price : number, description: string, stock: number, image: string }

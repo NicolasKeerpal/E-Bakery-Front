@@ -9,4 +9,8 @@ import { Food } from '../../models/food';
 })
 export class FoodCardComponent {
   @Input() food!: Food;
+
+  onImageError(event: any) {
+    event.target.src = '../../../assets/no_image_available.png';
+  }
 }
