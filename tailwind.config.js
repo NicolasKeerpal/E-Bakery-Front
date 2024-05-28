@@ -7,7 +7,11 @@ module.exports = {
     extend: {
       colors: {
         custom: {
-          '533619': '#533619',
+          'primary_color': '#221303',
+          'secondary_color':'#533619',
+          'hover_effect': '#EB9063',
+          'text_page_not_found':'#7D4B19',
+
         },
       },
     },
