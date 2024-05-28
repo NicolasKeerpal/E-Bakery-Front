@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PipePipe } from './pipe.pipe';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
@@ -13,11 +14,13 @@ import { ProfilComponent } from './components/profil/profil.component';
 import { OurProductsComponent } from './components/our-products/our-products.component';
 import { CartComponent } from './components/cart/cart.component';
 import { IngredientsComponent } from './components/ingredients/ingredients.component';
+import { FoodCardComponent } from './components/food-card/food-card.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ExtractTabDataPipe } from './pipes/extract-tab-data.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PipePipe,
     HeaderComponent,
     FooterComponent,
     HomeComponent,
@@ -26,13 +29,20 @@ import { IngredientsComponent } from './components/ingredients/ingredients.compo
     ProfilComponent,
     OurProductsComponent,
     CartComponent,
-    IngredientsComponent
+    IngredientsComponent,
+    FoodCardComponent,
+    NotFoundComponent,
+    ExtractTabDataPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
+    provideHttpClient(withFetch()),
     provideClientHydration()
   ],
   bootstrap: [AppComponent]

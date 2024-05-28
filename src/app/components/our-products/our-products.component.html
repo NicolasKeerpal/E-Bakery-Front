@@ -1,1 +1,20 @@
-<p>our-products works!</p>
+<h1>Our products :</h1>
+
+<input type="text" [(ngModel)]="searchQuery" placeholder="Search a product" (input)="filterFoods()">
+
+<div *ngIf="totalItems > itemsPerPage">
+    <button (click)="prevPage()"><</button>
+    Page : {{currentPage}}/{{totalPages}}
+    <button (click)="nextPage()">></button>
+</div>
+
+<div class="food-grid">
+    <app-food-card *ngFor="let food of paginatedFoods" [food]="food"></app-food-card>
+  </div>
+
+<div *ngIf="totalItems > itemsPerPage">
+  <button (click)="prevPage()"><</button>
+  Page : {{currentPage}}/{{totalPages}}
+  <button (click)="nextPage()">></button>
+</div>
+  
