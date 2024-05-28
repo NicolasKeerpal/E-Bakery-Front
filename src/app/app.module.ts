@@ -3,7 +3,6 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PipePipe } from './pipe.pipe';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
@@ -17,7 +16,6 @@ import { IngredientsComponent } from './components/ingredients/ingredients.compo
 @NgModule({
   declarations: [
     AppComponent,
-    PipePipe,
     HeaderComponent,
     FooterComponent,
     HomeComponent,
