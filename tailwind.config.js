@@ -1,9 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [],
+  content: [
+    "./src/**/*.{html,ts}",
+  ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        custom: {
+          'primary_color': '#221303',
+          'secondary_color':'#533619',
+          'hover_effect': '#EB9063',
+          'text_page_not_found':'#7D4B19',
+
+        },
+      },
+    },
   },
   plugins: [],
 }
-
