@@ -10,7 +10,7 @@
 
 <div class="food-grid">
     <app-food-card *ngFor="let food of paginatedFoods" [food]="food"></app-food-card>
-  </div>
+</div>
 
 <div *ngIf="totalItems > itemsPerPage">
   <button (click)="prevPage()"><</button>
