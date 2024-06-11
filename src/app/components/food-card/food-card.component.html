@@ -1,4 +1,4 @@
-<div class="food-card">
+<div class="food-card" [routerLink]="['/our-products', food.id]">
      <img [src]="food.image" alt="image" (error)="onImageError($event)" />
     <p>{{ food.name }}</p>
     <h2>{{ food.price | price : "€" }}</h2>
