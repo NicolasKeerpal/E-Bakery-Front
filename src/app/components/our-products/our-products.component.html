@@ -1,6 +1,6 @@
 <h1>Our products :</h1>
 
-<input type="text" [(ngModel)]="searchQuery" placeholder="Search a product" (input)="filterFoods()">
+Search <input class="w-80 h-7 border-2 border-[#533619] rounded bg-transparent p-2 placeholder-[#533619] focus:outline-none" type="text" [(ngModel)]="searchQuery" placeholder="Search a product" (input)="filterFoods()">
 
 <div *ngIf="totalItems > itemsPerPage">
     <button (click)="prevPage()"><</button>
