@@ -1,12 +1,39 @@
-<header class="bg-custom-secondary_color">
+<header class="bg-custom-secondary_color sticky top-0 z-10">
   <nav class="container mx-auto px-4 py-2 flex items-center justify-between">
     <img class="w-[4rem] h-[3.5rem] p-0" src="../../../assets/logo_website.png">
-    <ul class="flex space-x-4">
-      <li><a href="#" class="text-white hover:text-custom-hover_effect text-xl hover:font-bold">Home</a></li>
-      <li><a href="#" class="text-white hover:text-custom-hover_effect text-xl hover:font-bold">About</a></li>
-      <li><a href="#" class="text-white hover:text-custom-hover_effect text-xl hover:font-bold">Services</a></li>
-      <li><a href="#" class="text-white hover:text-custom-hover_effect text-xl hover:font-bold">Contact</a></li>
+    <ul class="flex space-x-12">
+      <li>
+        <a href="#" class="relative text-white hover:text-custom-hover_effect text-xl font-bold
+                          before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-full 
+                          before:h-0.5 before:bg-transparent before:transition-all before:duration-300 
+                          hover:before:bg-current hover:before:w-full">
+          Home
+        </a>
+      </li>
+      <li>
+        <a routerLink="/about-us" class="relative text-white hover:text-custom-hover_effect text-xl font-bold
+                          before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-full 
+                          before:h-0.5 before:bg-transparent before:transition-all before:duration-300 
+                          hover:before:bg-current hover:before:w-full">
+          About
+        </a>
+      </li>
+      <li>
+        <a href="#" class="relative text-white hover:text-custom-hover_effect text-xl font-bold
+                          before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-full 
+                          before:h-0.5 before:bg-transparent before:transition-all before:duration-300 
+                          hover:before:bg-current hover:before:w-full">
+          Services
+        </a>
+      </li>
+      <li>
+        <a href="#" class="relative text-white hover:text-custom-hover_effect text-xl font-bold
+                          before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-full 
+                          before:h-0.5 before:bg-transparent before:transition-all before:duration-300 
+                          hover:before:bg-current hover:before:w-full">
+          Contact
+        </a>
+      </li>
     </ul>
   </nav>
 </header>
-

@@ -17,6 +17,7 @@ import { IngredientsComponent } from './components/ingredients/ingredients.compo
 import { FoodCardComponent } from './components/food-card/food-card.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ExtractTabDataPipe } from './pipes/extract-tab-data.pipe';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ExtractTabDataPipe } from './pipes/extract-tab-data.pipe';
     IngredientsComponent,
     FoodCardComponent,
     NotFoundComponent,
-    ExtractTabDataPipe
+    ExtractTabDataPipe,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,
