@@ -8,6 +8,8 @@ import { ProductComponent } from '../components/product/product.component';
 import { ProfilComponent } from '../components/profil/profil.component';
 import { SignUpComponent } from '../components/sign-up/sign-up.component';
 import { noAuthGuard } from './guards/no-auth.guard';
+import { AboutUsComponent } from '../components/about-us/about-us.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,6 +18,7 @@ const routes: Routes = [
   { path: 'profil', component: ProfilComponent },
   { path: 'login', component: LoginComponent, canActivate: [noAuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [noAuthGuard] },
+  {path: 'about-us', component: AboutUsComponent},
   {path: '**', component: NotFoundComponent},
 ];
 

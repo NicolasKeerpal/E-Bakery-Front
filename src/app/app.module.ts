@@ -23,6 +23,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RedirectionDialogComponent } from './components/redirection-dialog/redirection-dialog.component';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
     CartComponent,
     FoodCardComponent,
     ExtractTabDataPipe,
+    AboutUsComponent,
     ProductComponent,
     SignUpComponent,
     RedirectionDialogComponent,
