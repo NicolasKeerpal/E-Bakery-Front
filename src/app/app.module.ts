@@ -13,14 +13,16 @@ import { PricePipe } from './pipes/price.pipe';
 import { ProfilComponent } from './components/profil/profil.component';
 import { OurProductsComponent } from './components/our-products/our-products.component';
 import { CartComponent } from './components/cart/cart.component';
-import { IngredientsComponent } from './components/ingredients/ingredients.component';
 import { FoodCardComponent } from './components/food-card/food-card.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ExtractTabDataPipe } from './pipes/extract-tab-data.pipe';
 import { ProductComponent } from './components/product/product.component';
 import { ErrorLoggingInterceptor } from './interceptors/error-login.interceptor';
-import { DialogComponent } from './components/dialog/dialog.component';
+import { ErrorCustomerInterceptor } from './interceptors/error-customer.interceptor';
+import { IngredientInterceptor } from './interceptors/ingredient.interceptor';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { NotFoundComponent } from '../components/not-found/not-found.component';
+import { RedirectionDialogComponent } from '../components/redirection-dialog/redirection-dialog.component';
+import { DialogComponent } from '../components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,13 +35,13 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     ProfilComponent,
     OurProductsComponent,
     CartComponent,
-    IngredientsComponent,
     FoodCardComponent,
-    NotFoundComponent,
     ExtractTabDataPipe,
     ProductComponent,
+    SignUpComponent,
+    RedirectionDialogComponent,
     DialogComponent,
-    SignUpComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,9 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
   providers: [
     provideHttpClient(withFetch()),
     provideClientHydration(),
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorLoggingInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorLoggingInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorCustomerInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: IngredientInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
