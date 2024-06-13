@@ -5,7 +5,6 @@
         <li><a href="" class="text-white hover:text-custom-hover_effect text-xl hover:font-bold">Home</a></li>
         <li><a routerLink="our-products" class="text-white hover:text-custom-hover_effect text-xl hover:font-bold">Our products</a></li>
         <li><a href="#" class="text-white hover:text-custom-hover_effect text-xl hover:font-bold">Contact</a></li>
-        <li *ngIf="userRole == 'admin'"><a routerLink="" class="text-white hover:text-custom-hover_effect text-xl hover:font-bold">Ingredients</a></li>
         <li *ngIf="!userRole"><a routerLink="login" class="text-white hover:text-custom-hover_effect text-xl hover:font-bold">Login</a></li>
         <li *ngIf="userRole"><a routerLink="profil" class="text-white hover:text-custom-hover_effect text-xl hover:font-bold">Profil</a></li>
     </ul>

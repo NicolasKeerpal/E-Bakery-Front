@@ -20,9 +20,9 @@ import { ErrorLoggingInterceptor } from './interceptors/error-login.interceptor'
 import { ErrorCustomerInterceptor } from './interceptors/error-customer.interceptor';
 import { IngredientInterceptor } from './interceptors/ingredient.interceptor';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { NotFoundComponent } from '../components/not-found/not-found.component';
-import { RedirectionDialogComponent } from '../components/redirection-dialog/redirection-dialog.component';
-import { DialogComponent } from '../components/dialog/dialog.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { RedirectionDialogComponent } from './components/redirection-dialog/redirection-dialog.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +30,7 @@ import { DialogComponent } from '../components/dialog/dialog.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
+    NotFoundComponent,
     LoginComponent,
     PricePipe,
     ProfilComponent,
