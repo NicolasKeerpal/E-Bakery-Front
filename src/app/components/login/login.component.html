@@ -1,15 +1,18 @@
 <h1>Login</h1>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <label for="username">Mail:</label>
-    <input type="text" id="mail" name="mail" formControlName="mail">
+    <input type="text" id="mail" name="mail" formControlName="mail" style="background-color: white; color: black; width: 100%; padding: 8px;">
     <br>
     <label for="password">Password:</label>
-    <input type="password" for="password" id="password" name="password" formControlName="password">
+    <input type="password" for="password" id="password" name="password" formControlName="password" style="background-color: white; color: black; width: 100%; padding: 8px;">
     <br>
-    <select for="role" id="role" name="role" formControlName="role">
+    <select for="role" id="role" name="role" formControlName="role" style="background-color: white; color: black; width: 100%; padding: 8px;">
         <option value="customer">Customer</option>
         <option value="employee">Employee</option>
     </select>
     <br>
     <button type="submit">Login</button>
 </form>
+<p>You don't have account ? </p><a routerLink="/sign-up">Create an account</a>
+
+<app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>

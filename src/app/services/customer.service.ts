@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class LoginService {
+export class CustomerService {
   url = "http://localhost:8000";
+
   constructor(private http: HttpClient) { }
 
-  login(credentials: any) {
-    return this.http.post(`${this.url}/login`, credentials);
+  addCustomer(data: any) {
+    return this.http.post(`${this.url}/customers`, data);
   }
 }
