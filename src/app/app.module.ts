@@ -20,10 +20,8 @@ import { ErrorLoggingInterceptor } from './interceptors/error-login.interceptor'
 import { ErrorCustomerInterceptor } from './interceptors/error-customer.interceptor';
 import { IngredientInterceptor } from './interceptors/ingredient.interceptor';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { RedirectionDialogComponent } from './components/redirection-dialog/redirection-dialog.component';
-import { DialogComponent } from './components/dialog/dialog.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +29,6 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    NotFoundComponent,
     LoginComponent,
     PricePipe,
     ProfilComponent,
@@ -41,17 +38,15 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     ExtractTabDataPipe,
     AboutUsComponent,
     ProductComponent,
-    SignUpComponent,
-    RedirectionDialogComponent,
-    DialogComponent,
-    NotFoundComponent
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [
     provideHttpClient(withFetch()),

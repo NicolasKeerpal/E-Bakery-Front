@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'our-products', component: OurProductsComponent },
   { path: 'our-products/:id', component: ProductComponent },
+  { path: 'ingredients', loadChildren: () => import('./modules/ingredients.module').then(m => m.IngredientsModule) },
   { path: 'profil', component: ProfilComponent },
   { path: 'login', component: LoginComponent, canActivate: [noAuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [noAuthGuard] },

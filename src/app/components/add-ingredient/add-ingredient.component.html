@@ -1,0 +1,13 @@
+<h1>Adding ingredient</h1>
+<form [formGroup]="ingredientForm" (ngSubmit)="onSubmit()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" formControlName="name" style="background-color: white; color: black; width: 100%; padding: 8px;">
+    <br>
+    <label for="stock">Stock:</label>
+    <input type="text" id="stock" name="stock" formControlName="stock" style="background-color: white; color: black; width: 100%; padding: 8px;">
+    <br>
+    <button type="submit">Add</button>
+</form>
+
+<app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
+<app-redirection-dialog [message]="dialogMessage" [showRedirectionDialog]="showRedirectionDialog" [redirectUrl]="'/ingredients'" (closeRedictionDialog)="closeRedirectionDialog()"></app-redirection-dialog>
