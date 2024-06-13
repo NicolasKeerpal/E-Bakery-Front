@@ -25,7 +25,7 @@ export class OurProductsComponent {
         this.totalItems = data.length;
       },
       error => {
-        console.error('Error', error);
+        this.foods = [];
       }
     );
   }

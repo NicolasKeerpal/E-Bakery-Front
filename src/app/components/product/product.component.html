@@ -1,1 +1,5 @@
-<p>product works!</p>
+<ng-container *ngIf="food">
+    <p>product works!</p>
+</ng-container>
+
+<app-not-found *ngIf="!food"></app-not-found>
