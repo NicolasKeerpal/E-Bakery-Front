@@ -19,9 +19,12 @@ import { ProductComponent } from './components/product/product.component';
 import { ErrorLoggingInterceptor } from './interceptors/error-login.interceptor';
 import { ErrorCustomerInterceptor } from './interceptors/error-customer.interceptor';
 import { IngredientInterceptor } from './interceptors/ingredient.interceptor';
+import { ProductInterceptor } from './interceptors/product.interceptor';
+import { CompositionInterceptor } from './interceptors/composition.interceptor';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { SharedModule } from './shared/shared.module';
+import { AddProductComponent } from './components/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,8 @@ import { SharedModule } from './shared/shared.module';
     ExtractTabDataPipe,
     AboutUsComponent,
     ProductComponent,
-    SignUpComponent
+    SignUpComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
@@ -54,6 +58,8 @@ import { SharedModule } from './shared/shared.module';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorLoggingInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorCustomerInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: IngredientInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ProductInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: CompositionInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
