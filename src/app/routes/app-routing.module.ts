@@ -12,6 +12,9 @@ import { noAuthGuard } from './guards/no-auth.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { AboutUsComponent } from '../components/about-us/about-us.component';
 import { UpdateProfilComponent } from '../components/update-profil/update-profil.component';
+import { CartComponent } from '../components/cart/cart.component';
+import { OrdersListComponent } from '../components/orders-list/orders-list.component';
+import { BuyScreenComponent } from '../components/buy-screen/buy-screen.component';
 
 
 const routes: Routes = [
@@ -20,6 +23,9 @@ const routes: Routes = [
   { path: 'our-products/add', component: AddProductComponent },
   { path: 'our-products/:id', component: ProductComponent },
   { path: 'ingredients', loadChildren: () => import('./modules/ingredients.module').then(m => m.IngredientsModule) },
+  { path: 'orders', component: OrdersListComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'cart/:id/buy', component: BuyScreenComponent },
   { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },  
   { path: 'profil/edit', component: UpdateProfilComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [noAuthGuard] },
