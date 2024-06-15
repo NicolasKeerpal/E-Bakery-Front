@@ -17,7 +17,8 @@ import { FoodCardComponent } from './components/food-card/food-card.component';
 import { ExtractTabDataPipe } from './pipes/extract-tab-data.pipe';
 import { ProductComponent } from './components/product/product.component';
 import { ErrorLoggingInterceptor } from './interceptors/error-login.interceptor';
-import { ErrorCustomerInterceptor } from './interceptors/error-customer.interceptor';
+import { CustomerInterceptor } from './interceptors/customer.interceptor';
+import { EmployeeInterceptor } from './interceptors/employee.interceptor';
 import { IngredientInterceptor } from './interceptors/ingredient.interceptor';
 import { ProductInterceptor } from './interceptors/product.interceptor';
 import { CompositionInterceptor } from './interceptors/composition.interceptor';
@@ -25,6 +26,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { SharedModule } from './shared/shared.module';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import { UpdateProfilComponent } from './components/update-profil/update-profil.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { AddProductComponent } from './components/add-product/add-product.compon
     AboutUsComponent,
     ProductComponent,
     SignUpComponent,
-    AddProductComponent
+    AddProductComponent,
+    UpdateProfilComponent
   ],
   imports: [
     BrowserModule,
@@ -56,10 +59,11 @@ import { AddProductComponent } from './components/add-product/add-product.compon
     provideHttpClient(withFetch()),
     provideClientHydration(),
     { provide: HTTP_INTERCEPTORS, useClass: ErrorLoggingInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorCustomerInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: CustomerInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: IngredientInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ProductInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: CompositionInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: EmployeeInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

@@ -1,2 +1,93 @@
-<p>profil works!</p>
+<h1>Your profil</h1>
+
+<ng-container *ngIf="userRole=='customer'">
+    <h1> {{ customer?.firstname }} {{ customer?.lastname }} </h1>
+
+    <p> {{ userRole }} </p>
+
+    <table class="space-x-4">
+        <tr>
+            <td>
+                Fistname <br>
+                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
+                    <p>{{ customer?.firstname }}</p>
+                </div>
+            </td>
+            <td>
+                Lastname <br>
+                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
+                    <p>{{ customer?.lastname }}</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Mail <br>
+                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
+                    <p>{{ customer?.mail }}</p>
+                </div>
+            </td>
+            <td>
+                Address <br>
+                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
+                    <p>{{ customer?.address }}</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Town <br>
+                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
+                    <p>{{ customer?.town }}</p>
+                </div>
+            </td>
+            <td>
+                Zip code <br>
+                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
+                    <p>{{ customer?.zipCode }}</p>
+                </div>
+            </td>
+        </tr>
+    </table>
+</ng-container>
+
+<ng-container *ngIf="userRole!='customer'">
+    <h1> {{ employee?.firstname }} {{ employee?.lastname }} </h1>
+
+    <p> Employee - {{ userRole }} </p>
+
+    <table class="space-x-4">
+        <tr>
+            <td>
+                Fistname <br>
+                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
+                    <p>{{ employee?.firstname }}</p>
+                </div>
+            </td>
+            <td>
+                Lastname <br>
+                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
+                    <p>{{ employee?.lastname }}</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Mail <br>
+                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
+                    <p>{{ employee?.mail }}</p>
+                </div>
+            </td>
+            <td>
+                End of contract <br>
+                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
+                    <p>{{ employee?.endContract }}</p>
+                </div>
+            </td>
+        </tr>
+    </table>
+</ng-container>
+
 <button (click)="logout()">Logout</button>
+<button routerLink="edit">Modify</button>
+<button *ngIf="userRole=='customer' || userRole=='admin'">Delete</button>

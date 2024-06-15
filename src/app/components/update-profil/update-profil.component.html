@@ -1,0 +1,46 @@
+<h1>Update your profil</h1>
+
+<ng-container *ngIf="userRole=='customer'">
+    <form [formGroup]="profilForm" (ngSubmit)="onSubmit()">
+        <label for="mail">Mail (*):</label>
+        <input type="text" id="mail" name="mail" formControlName="mail" style="background-color: white; color: black; width: 100%; padding: 8px;">
+        <br>
+        <label for="town">Town:</label>
+        <input type="text" id="town" name="town" formControlName="town" style="background-color: white; color: black; width: 100%; padding: 8px;">
+        <br>
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" formControlName="address" style="background-color: white; color: black; width: 100%; padding: 8px;">
+        <br>
+        <label for="zipCode">Zip code:</label>
+        <input type="text" id="zipCode" name="zipCode" formControlName="zipCode" style="background-color: white; color: black; width: 100%; padding: 8px;">
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" formControlName="password" style="background-color: white; color: black; width: 100%; padding: 8px;">
+        <br>
+        <button type="submit">Modify</button>
+    </form>
+</ng-container>
+
+<ng-container *ngIf="userRole!='customer'">
+    <form [formGroup]="profilForm" (ngSubmit)="onSubmit()">
+        <ng-container *ngIf="userRole=='admin'">
+            <label for="firstname">Firstname (*):</label>
+            <input type="text" id="firstname" name="firstname" formControlName="firstname" style="background-color: white; color: black; width: 100%; padding: 8px;">
+            <br>
+            <label for="lastname">Lastname (*):</label>
+            <input type="text" id="lastname" name="lastname" formControlName="lastname" style="background-color: white; color: black; width: 100%; padding: 8px;">
+            <br>
+        </ng-container>
+
+        <label for="mail">Mail (*):</label>
+        <input type="text" id="mail" name="mail" formControlName="mail" style="background-color: white; color: black; width: 100%; padding: 8px;">
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" formControlName="password" style="background-color: white; color: black; width: 100%; padding: 8px;">
+        <br>
+        <button type="submit">Modify</button>
+    </form>
+</ng-container>
+
+<app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
+<app-redirection-dialog [message]="dialogMessage" [showRedirectionDialog]="showRedirectionDialog" [redirectUrl]="'/profil'" (closeRedictionDialog)="closeRedirectionDialog()"></app-redirection-dialog>

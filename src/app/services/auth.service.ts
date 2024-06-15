@@ -41,6 +41,15 @@ export class AuthService {
     return null;
   }
 
+  getId(): number {
+    const token = this.getToken();
+    if (token) {
+      const decoded: any = jwtDecode(token);
+      return decoded.id;
+    }
+    return 0;
+  }
+
   isConnected(): boolean {
     if (this.getRole()) {
       return true;
