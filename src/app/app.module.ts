@@ -17,13 +17,20 @@ import { FoodCardComponent } from './components/food-card/food-card.component';
 import { ExtractTabDataPipe } from './pipes/extract-tab-data.pipe';
 import { ProductComponent } from './components/product/product.component';
 import { ErrorLoggingInterceptor } from './interceptors/error-login.interceptor';
-import { ErrorCustomerInterceptor } from './interceptors/error-customer.interceptor';
+import { CustomerInterceptor } from './interceptors/customer.interceptor';
+import { EmployeeInterceptor } from './interceptors/employee.interceptor';
 import { IngredientInterceptor } from './interceptors/ingredient.interceptor';
+import { ProductInterceptor } from './interceptors/product.interceptor';
+import { CompositionInterceptor } from './interceptors/composition.interceptor';
+import { OrderInterceptor } from './interceptors/order.interceptor';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { RedirectionDialogComponent } from './components/redirection-dialog/redirection-dialog.component';
-import { DialogComponent } from './components/dialog/dialog.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { SharedModule } from './shared/shared.module';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { UpdateProfilComponent } from './components/update-profil/update-profil.component';
+import { OrdersListComponent } from './components/orders-list/orders-list.component';
+import { DueDateFormatPipe } from './pipes/due-date-format.pipe';
+import { BuyScreenComponent } from './components/buy-screen/buy-screen.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +38,6 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    NotFoundComponent,
     LoginComponent,
     PricePipe,
     ProfilComponent,
@@ -42,23 +48,30 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     AboutUsComponent,
     ProductComponent,
     SignUpComponent,
-    RedirectionDialogComponent,
-    DialogComponent,
-    NotFoundComponent
+    AddProductComponent,
+    UpdateProfilComponent,
+    OrdersListComponent,
+    DueDateFormatPipe,
+    BuyScreenComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [
     provideHttpClient(withFetch()),
     provideClientHydration(),
     { provide: HTTP_INTERCEPTORS, useClass: ErrorLoggingInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorCustomerInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: CustomerInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: IngredientInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ProductInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: CompositionInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: EmployeeInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: OrderInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

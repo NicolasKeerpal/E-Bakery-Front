@@ -5,11 +5,11 @@ import { Order } from '../../models/order';
 import { Food } from '../../models/food';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss'
+  selector: 'app-orders-list',
+  templateUrl: './orders-list.component.html',
+  styleUrl: './orders-list.component.scss'
 })
-export class CartComponent {
+export class OrdersListComponent {
   orders: Order[] = [];
   foods: Food[] = [];
   displayedOrders: Order[] = [];
@@ -43,7 +43,7 @@ export class CartComponent {
   }
 
   loadOrders(): void {
-    this.orderService.getCart().subscribe(
+    this.orderService.getPaidOrders().subscribe(
       (data: Order[]) => {
         this.orders = data;
         this.displayedOrders = data;
@@ -80,10 +80,10 @@ export class CartComponent {
     }
   }
 
-  deleteOrder(id: number): void {
-    this.orderService.delOrder(id).subscribe(
+  validateOrder(id: number): void {
+    this.orderService.validateOrder(id).subscribe(
       () => {
-        this.dialogMessage = "Order was deleted succesfully !";
+        this.dialogMessage = "Ingredient was deleted succesfully !";
         this.showDialog = true;
         this.loadOrders();
       },

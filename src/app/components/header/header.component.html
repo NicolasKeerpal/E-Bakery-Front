@@ -34,8 +34,32 @@
           Contact
         </a>
       </li>
-        <li *ngIf="!userRole"><a routerLink="login" class="text-white hover:text-custom-hover_effect text-xl hover:font-bold">Login</a></li>
-        <li *ngIf="userRole"><a routerLink="profil" class="text-white hover:text-custom-hover_effect text-xl hover:font-bold">Profil</a></li>
+      <li *ngIf="userRole == 'customer'">
+        <a routerLink="orders" class="relative text-white hover:text-custom-hover_effect text-xl font-bold
+                          before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-full 
+                          before:h-0.5 before:bg-transparent before:transition-all before:duration-300 
+                          hover:before:bg-current hover:before:w-full">
+          Orders
+        </a>
+      </li>
+      <li *ngIf="userRole == 'customer'">
+        <a routerLink="cart" class="relative text-white hover:text-custom-hover_effect text-xl font-bold
+                          before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-full 
+                          before:h-0.5 before:bg-transparent before:transition-all before:duration-300 
+                          hover:before:bg-current hover:before:w-full">
+          Cart
+        </a>
+      </li>
+      <li *ngIf="userRole == 'admin'">
+        <a routerLink="ingredients" class="relative text-white hover:text-custom-hover_effect text-xl font-bold
+                          before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-full 
+                          before:h-0.5 before:bg-transparent before:transition-all before:duration-300 
+                          hover:before:bg-current hover:before:w-full">
+          Ingredient
+        </a>
+      </li>
+      <li *ngIf="!userRole"><a routerLink="login" class="text-white hover:text-custom-hover_effect text-xl hover:font-bold">Login</a></li>
+      <li *ngIf="userRole"><a routerLink="profil" class="text-white hover:text-custom-hover_effect text-xl hover:font-bold">Profil</a></li>
     </ul>
   </nav>
 </header>

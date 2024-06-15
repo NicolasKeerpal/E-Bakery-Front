@@ -1,4 +1,4 @@
-<h1>My cart :</h1>
+<h1>My orders :</h1>
 
 <ng-container *ngIf="orders.length > 0">
     <div *ngIf="totalItems > itemsPerPage">
@@ -12,22 +12,26 @@
           <tr>
             <th class="border border-[#533619] p-2">Product</th>
             <th class="border border-[#533619] p-2">Qty</th>
-            <th class="border border-[#533619] p-2">Buy</th>
-            <th class="border border-[#533619] p-2">Delete</th>
             <th class="border border-[#533619] p-2">Price</th>
+            <th class="border border-[#533619] p-2">Deliveryman</th>
+            <th class="border border-[#533619] p-2">Date</th>
+            <th class="border border-[#533619] p-2">Delivered</th>
+            <th class="border border-[#533619] p-2">Validation</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let order of paginatedOrders">
             <td class="border border-[#533619] p-2">{{ getFoodName(order.foodId) }}</td>
             <td class="border border-[#533619] p-2">{{ order.qty }}</td>
-            <td class="border border-[#533619] p-2">
-              <button [routerLink]="['/cart', order.id, 'buy']">Buy</button>
-            </td>
-            <td class="border border-[#533619] p-2">
-              <button (click)="deleteOrder(order.id)">Delete</button>
-            </td>
             <td class="border border-[#533619] p-2">{{ getFoodPrice(order.foodId) | price : "€" }}</td>
+            <td class="border border-[#533619] p-2">{{ order.deliverymanId }}</td>
+            <td class="border border-[#533619] p-2">{{ order.createdAt | date:'dd/MM/yyyy' }}</td>
+            <td class="border border-[#533619] p-2">{{ order.dueDate | dueDateFormat }}</td>
+            <td class="border border-[#533619] p-2">
+              <button *ngIf="!order.validation" (click)="validateOrder(order.id)">Validate</button>
+              <button *ngIf="order.validation" disabled>Validated</button>
+            </td>
+
           </tr>
         </tbody>
       </table>
@@ -42,5 +46,5 @@
 </ng-container>
 
 <ng-container *ngIf="orders.length==0">
-<p>You have nothing to add to your cart</p>
+<p>You have not orders</p>
 </ng-container>

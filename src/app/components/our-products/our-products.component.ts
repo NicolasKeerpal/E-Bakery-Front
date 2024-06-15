@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FoodService } from '../../services/food.service';
 import { Food } from '../../models/food';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-our-products',
@@ -14,10 +15,12 @@ export class OurProductsComponent {
   itemsPerPage: number = 16;
   totalItems: number = 0;
   searchQuery: string = '';
+  userRole: string | null = null;
 
-  constructor(private foodService: FoodService) { }
+  constructor(private foodService: FoodService, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.userRole = this.authService.getRole();
     this.foodService.getFoods().subscribe(
       (data: Food[]) => {
         this.foods = data;

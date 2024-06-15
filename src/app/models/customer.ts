@@ -1,0 +1,1 @@
+export interface Customer{ id: number, firstname : string, lastname : string, mail : string, address : string, town : string, zipCode : number }

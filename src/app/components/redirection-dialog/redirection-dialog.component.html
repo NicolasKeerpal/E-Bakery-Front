@@ -1,5 +1,5 @@
-<div *ngIf="showRedirectionDialog" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-    <div class="bg-custom-secondary_color p-6 rounded shadow-lg w-1/3 text-center border-2 border-custom-border_color">
+<div *ngIf="showRedirectionDialog" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div class="bg-custom-secondary_color p-6 rounded shadow-lg w-1/3 text-center border-2 border-custom-border_color z-51">
       <p>{{ message }}</p>
       <button (click)="close()">OK</button>
     </div>
