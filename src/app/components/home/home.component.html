@@ -1,11 +1,20 @@
-<div class="flex items-center justify-center bg-cover bg-center bg-no-repeat h-[30rem]" style="background-image: url('../../../assets/bk-image.png');">
+  <div class="flex items-center justify-center bg-cover bg-center bg-no-repeat h-[30rem]" style="background-image: url('../../../assets/bk-image.png');">
     <div class="text-center">
       <p class="text-white text-8xl font-bold mb-10">Your online bakery</p>
       <p class="text-white text-2xl mb-10">We deliver your favorite pastries directly to your home</p>
       <div class="flex justify-center">
-        <p class="text-white text-2xl font-semibold py-2 px-4 bg-custom-hover_effect border-4 border-custom-hover_effect rounded-full hover:bg-custom-primary_color hover:text-custom-hover_effect duration-300 cursor-pointer w-[20rem]">
+        <a routerLink="/our-products" class="text-white text-2xl font-semibold py-2 px-4 bg-custom-hover_effect border-4 border-custom-hover_effect rounded-full hover:bg-custom-primary_color hover:text-custom-hover_effect duration-300 cursor-pointer w-[20rem] text-center">
           Order Now
-        </p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-center mt-[4rem] mb-[4rem]">
+    <div class="text-center">
+      <p class="text-white text-[2.5rem] font-bold"> Flagship Product</p>
+      <div class="mt-[2rem] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-[4rem]">
+        <app-food-card *ngFor="let food of displayedFoods" [food]="food"></app-food-card>
       </div>
     </div>
   </div>
