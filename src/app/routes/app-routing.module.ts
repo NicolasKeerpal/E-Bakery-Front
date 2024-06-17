@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'our-products/add', component: AddProductComponent },
   { path: 'our-products/:id', component: ProductComponent },
   { path: 'ingredients', loadChildren: () => import('./modules/ingredients.module').then(m => m.IngredientsModule) },
+  { path: 'populate-db', loadChildren: () => import('./modules/populate-db.module').then(m => m.PopulateDbModule) },
   { path: 'orders', component: OrdersListComponent },
   { path: 'cart', component: CartComponent },
   { path: 'cart/:id/buy', component: BuyScreenComponent },
