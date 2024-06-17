@@ -10,6 +10,7 @@ import { ProfilComponent } from '../components/profil/profil.component';
 import { SignUpComponent } from '../components/sign-up/sign-up.component';
 import { noAuthGuard } from './guards/no-auth.guard';
 import { AuthGuard } from './guards/auth.guard';
+import { AuthByRoleGuard } from './guards/auth-by-role.guard';
 import { AboutUsComponent } from '../components/about-us/about-us.component';
 import { UpdateProfilComponent } from '../components/update-profil/update-profil.component';
 import { CartComponent } from '../components/cart/cart.component';
@@ -20,13 +21,13 @@ import { BuyScreenComponent } from '../components/buy-screen/buy-screen.componen
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'our-products', component: OurProductsComponent },
-  { path: 'our-products/add', component: AddProductComponent },
+  { path: 'our-products/add', component: AddProductComponent , canActivate: [AuthByRoleGuard], data: { roles: ['admin'] } },
   { path: 'our-products/:id', component: ProductComponent },
-  { path: 'ingredients', loadChildren: () => import('./modules/ingredients.module').then(m => m.IngredientsModule) },
-  { path: 'populate-db', loadChildren: () => import('./modules/populate-db.module').then(m => m.PopulateDbModule) },
-  { path: 'orders', component: OrdersListComponent },
-  { path: 'cart', component: CartComponent },
-  { path: 'cart/:id/buy', component: BuyScreenComponent },
+  { path: 'ingredients', loadChildren: () => import('./modules/ingredients.module').then(m => m.IngredientsModule) , canActivate: [AuthByRoleGuard], data: { roles: ['admin'] }},
+  { path: 'populate-db', loadChildren: () => import('./modules/populate-db.module').then(m => m.PopulateDbModule) , canActivate: [AuthByRoleGuard], data: { roles: ['admin'] } },
+  { path: 'orders', component: OrdersListComponent , canActivate: [AuthByRoleGuard], data: { roles: ['customer'] } },
+  { path: 'cart', component: CartComponent , canActivate: [AuthByRoleGuard], data: { roles: ['customer'] } },
+  { path: 'cart/:id/buy', component: BuyScreenComponent , canActivate: [AuthByRoleGuard], data: { roles: ['customer'] } },
   { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },  
   { path: 'profil/edit', component: UpdateProfilComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [noAuthGuard] },
