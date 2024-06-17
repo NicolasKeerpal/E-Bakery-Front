@@ -1,46 +1,47 @@
-<h1>Update your profil</h1>
+<div class="flex items-center justify-center mt-[3rem] mb-[3rem]">
+    <div class="bg-[#533619] rounded-lg p-6 w-[30rem]">
+        <h1 class="text-3xl font-bold mb-4 text-white">Update Your Profile</h1>
 
-<ng-container *ngIf="userRole=='customer'">
-    <form [formGroup]="profilForm" (ngSubmit)="onSubmit()">
-        <label for="mail">Mail (*):</label>
-        <input type="text" id="mail" name="mail" formControlName="mail" style="background-color: white; color: black; width: 100%; padding: 8px;">
-        <br>
-        <label for="town">Town:</label>
-        <input type="text" id="town" name="town" formControlName="town" style="background-color: white; color: black; width: 100%; padding: 8px;">
-        <br>
-        <label for="address">Address:</label>
-        <input type="text" id="address" name="address" formControlName="address" style="background-color: white; color: black; width: 100%; padding: 8px;">
-        <br>
-        <label for="zipCode">Zip code:</label>
-        <input type="text" id="zipCode" name="zipCode" formControlName="zipCode" style="background-color: white; color: black; width: 100%; padding: 8px;">
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" formControlName="password" style="background-color: white; color: black; width: 100%; padding: 8px;">
-        <br>
-        <button type="submit">Modify</button>
-    </form>
-</ng-container>
-
-<ng-container *ngIf="userRole!='customer'">
-    <form [formGroup]="profilForm" (ngSubmit)="onSubmit()">
-        <ng-container *ngIf="userRole=='admin'">
-            <label for="firstname">Firstname (*):</label>
-            <input type="text" id="firstname" name="firstname" formControlName="firstname" style="background-color: white; color: black; width: 100%; padding: 8px;">
-            <br>
-            <label for="lastname">Lastname (*):</label>
-            <input type="text" id="lastname" name="lastname" formControlName="lastname" style="background-color: white; color: black; width: 100%; padding: 8px;">
-            <br>
+        <ng-container *ngIf="userRole=='customer'">
+            <form [formGroup]="profilForm" (ngSubmit)="onSubmit()">
+                <label for="mail" class="text-white">Mail (*):</label>
+                <input type="text" id="mail" name="mail" formControlName="mail" class="bg-white text-black w-full p-2 rounded-lg mb-4" placeholder="Enter your mail...">
+                <br>
+                <label for="town" class="text-white">Town:</label>
+                <input type="text" id="town" name="town" formControlName="town" class="bg-white text-black w-full p-2 rounded-lg mb-4" placeholder="Enter your town...">
+                <br>
+                <label for="address" class="text-white">Address:</label>
+                <input type="text" id="address" name="address" formControlName="address" class="bg-white text-black w-full p-2 rounded-lg mb-4" placeholder="Enter your address...">
+                <br>
+                <label for="zipCode" class="text-white">Zip code:</label>
+                <input type="text" id="zipCode" name="zipCode" formControlName="zipCode" class="bg-white text-black w-full p-2 rounded-lg mb-4" placeholder="Enter your zip code...">
+                <br>
+                <label for="password" class="text-white">Password:</label>
+                <input type="password" id="password" name="password" formControlName="password" class="bg-white text-black w-full p-2 rounded-lg mb-4" placeholder="Enter your password...">
+                <br>
+                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none">Modify</button>
+            </form>
         </ng-container>
 
-        <label for="mail">Mail (*):</label>
-        <input type="text" id="mail" name="mail" formControlName="mail" style="background-color: white; color: black; width: 100%; padding: 8px;">
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" formControlName="password" style="background-color: white; color: black; width: 100%; padding: 8px;">
-        <br>
-        <button type="submit">Modify</button>
-    </form>
-</ng-container>
+        <ng-container *ngIf="userRole!='customer'">
+            <form [formGroup]="profilForm" (ngSubmit)="onSubmit()">
+                <ng-container *ngIf="userRole=='admin'">
+                    <label for="firstname" class="text-white">Firstname (*):</label>
+                    <input type="text" id="firstname" name="firstname" formControlName="firstname" class="bg-white text-black w-full p-2 rounded-lg mb-4" placeholder="Enter your firstname...">
+                    <br>
+                    <label for="lastname" class="text-white">Lastname (*):</label>
+                    <input type="text" id="lastname" name="lastname" formControlName="lastname" class="bg-white text-black w-full p-2 rounded-lg mb-4" placeholder="Enter your lastname...">
+                    <br>
+                </ng-container>
 
-<app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
-<app-redirection-dialog [message]="dialogMessage" [showRedirectionDialog]="showRedirectionDialog" [redirectUrl]="'/profil'" (closeRedictionDialog)="closeRedirectionDialog()"></app-redirection-dialog>
+                <label for="mail" class="text-white">Mail (*):</label>
+                <input type="text" id="mail" name="mail" formControlName="mail" class="bg-white text-black w-full p-2 rounded-lg mb-4" placeholder="Enter your mail...">
+                <br>
+                <label for="password" class="text-white">Password:</label>
+                <input type="password" id="password" name="password" formControlName="password" class="bg-white text-black w-full p-2 rounded-lg mb-4" placeholder="Enter your password...">
+                <br>
+                <button type="submit" class="px-4 py-2 bg-custom-primary_color text-white rounded-lg hover:bg-custom-hover_effect focus:outline-none">Modify</button>
+            </form>
+        </ng-container>
+    </div>
+</div>

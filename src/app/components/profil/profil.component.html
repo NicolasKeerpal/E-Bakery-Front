@@ -1,93 +1,99 @@
-<h1>Your profil</h1>
+<div class="flex items-center justify-center mt-[3rem] mb-[3rem]">
+    <div class="bg-[#533619] rounded-lg p-6 w-[30rem]">
+        <h1 class="text-3xl font-bold mb-4">Your Profile</h1>
 
-<ng-container *ngIf="userRole=='customer'">
-    <h1> {{ customer?.firstname }} {{ customer?.lastname }} </h1>
+        <ng-container *ngIf="userRole=='customer'">
+            <div class="bg-custom-primary_color rounded-lg p-4 mb-4">
+                <h1 class="text-2xl text-white">{{ customer?.firstname }} {{ customer?.lastname }}</h1>
+                <p class="text-white">{{ userRole }}</p>
+                <div class="mt-4">
+                    <div class="flex space-x-4">
+                        <div class="flex-1">
+                            <p class="text-white font-semibold">First Name</p>
+                            <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2 rounded">
+                                <p>{{ customer?.firstname }}</p>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-white font-semibold">Last Name</p>
+                            <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2 rounded">
+                                <p>{{ customer?.lastname }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4 mt-4">
+                        <div class="flex-1">
+                            <p class="text-white font-semibold">Mail</p>
+                            <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2 rounded">
+                                <p>{{ customer?.mail }}</p>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-white font-semibold">Address</p>
+                            <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2 rounded">
+                                <p>{{ customer?.address }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4 mt-4">
+                        <div class="flex-1">
+                            <p class="text-white font-semibold">Town</p>
+                            <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2 rounded">
+                                <p>{{ customer?.town }}</p>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-white font-semibold">Zip Code</p>
+                            <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2 rounded">
+                                <p>{{ customer?.zipCode }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
 
-    <p> {{ userRole }} </p>
+        <ng-container *ngIf="userRole!='customer'">
+            <div class="bg-custom-primary_color rounded-lg p-4 mb-4">
+                <h1 class="text-2xl text-white">{{ employee?.firstname }} {{ employee?.lastname }}</h1>
+                <p class="text-white">Employee - {{ userRole }}</p>
+                <div class="mt-4">
+                    <div class="flex space-x-4">
+                        <div class="flex-1">
+                            <p class="text-white font-semibold">First Name</p>
+                            <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2 rounded">
+                                <p>{{ employee?.firstname }}</p>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-white font-semibold">Last Name</p>
+                            <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2 rounded">
+                                <p>{{ employee?.lastname }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4 mt-4">
+                        <div class="flex-1">
+                            <p class="text-white font-semibold">Mail</p>
+                            <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2 rounded">
+                                <p>{{ employee?.mail }}</p>
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <p class="text-white font-semibold">End of Contract</p>
+                            <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2 rounded">
+                                <p>{{ employee?.endContract }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
 
-    <table class="space-x-4">
-        <tr>
-            <td>
-                Fistname <br>
-                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
-                    <p>{{ customer?.firstname }}</p>
-                </div>
-            </td>
-            <td>
-                Lastname <br>
-                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
-                    <p>{{ customer?.lastname }}</p>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Mail <br>
-                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
-                    <p>{{ customer?.mail }}</p>
-                </div>
-            </td>
-            <td>
-                Address <br>
-                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
-                    <p>{{ customer?.address }}</p>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Town <br>
-                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
-                    <p>{{ customer?.town }}</p>
-                </div>
-            </td>
-            <td>
-                Zip code <br>
-                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
-                    <p>{{ customer?.zipCode }}</p>
-                </div>
-            </td>
-        </tr>
-    </table>
-</ng-container>
-
-<ng-container *ngIf="userRole!='customer'">
-    <h1> {{ employee?.firstname }} {{ employee?.lastname }} </h1>
-
-    <p> Employee - {{ userRole }} </p>
-
-    <table class="space-x-4">
-        <tr>
-            <td>
-                Fistname <br>
-                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
-                    <p>{{ employee?.firstname }}</p>
-                </div>
-            </td>
-            <td>
-                Lastname <br>
-                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
-                    <p>{{ employee?.lastname }}</p>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Mail <br>
-                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
-                    <p>{{ employee?.mail }}</p>
-                </div>
-            </td>
-            <td>
-                End of contract <br>
-                <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2">
-                    <p>{{ employee?.endContract }}</p>
-                </div>
-            </td>
-        </tr>
-    </table>
-</ng-container>
-
-<button (click)="logout()">Logout</button>
-<button routerLink="edit">Modify</button>
-<button *ngIf="userRole=='customer' || userRole=='admin'">Delete</button>
+        <div class="flex space-x-4 items-center justify-center">
+            <button class="px-4 py-2 bg-custom-primary_color text-white rounded hover:bg-custom-hover_effect focus:outline-none" (click)="logout()">Logout</button>
+            <button routerLink="edit" class="px-4 py-2 bg-custom-primary_color text-white rounded hover:bg-custom-hover_effect focus:outline-none">Modify</button>
+            <button *ngIf="userRole=='customer' || userRole=='admin'" class="px-4 py-2 bg-custom-primary_color text-white rounded hover:bg-custom-hover_effect focus:outline-none">Delete</button>
+        </div>
+    </div>
+</div>

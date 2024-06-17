@@ -1,7 +1,7 @@
 <header class="bg-custom-secondary_color sticky top-0 z-10">
   <nav class="container mx-auto px-4 py-2 flex items-center justify-between">
     <img class="w-[4rem] h-[3.5rem] p-0" src="../../../assets/logo_website.png">
-    <ul class="flex space-x-12">
+    <ul class="flex space-x-12 pr-[1rem]">
       <li>
         <a href="" class="relative text-white hover:text-custom-hover_effect text-xl font-bold
                           before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-full 
@@ -26,14 +26,6 @@
           Our Products
         </a>
       </li>
-      <li>
-        <a href="#" class="relative text-white hover:text-custom-hover_effect text-xl font-bold
-                          before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-full 
-                          before:h-0.5 before:bg-transparent before:transition-all before:duration-300 
-                          hover:before:bg-current hover:before:w-full">
-          Contact
-        </a>
-      </li>
       <li *ngIf="userRole == 'customer'">
         <a routerLink="orders" class="relative text-white hover:text-custom-hover_effect text-xl font-bold
                           before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-full 
@@ -55,7 +47,25 @@
                           before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-full 
                           before:h-0.5 before:bg-transparent before:transition-all before:duration-300 
                           hover:before:bg-current hover:before:w-full">
-          Ingredient
+          Ingredients
+        </a>
+      </li>
+      <li *ngIf="userRole == 'deliveryman'">
+        <a routerLink="ingredients" class="relative text-white hover:text-custom-hover_effect text-xl font-bold
+                          before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-full 
+                          before:h-0.5 before:bg-transparent before:transition-all before:duration-300 
+                          hover:before:bg-current hover:before:w-full">
+          Deliveries
+        </a>
+      </li>
+      <li *ngIf="!userRole">
+        <a routerLink="login"  class="bg-custom-primary_color text-white hover:text-white hover:bg-custom-hover_effect text-xl font-bold rounded-[5rem] px-[2rem] py-[0.2rem]">
+        Login
+      </a>
+      </li>
+      <li *ngIf="userRole">
+        <a routerLink="profil" class="bg-custom-primary_color text-white hover:text-white hover:bg-custom-hover_effect text-xl font-bold rounded-[5rem] px-[2rem] py-[0.2rem]">
+          Profil
         </a>
       </li>
       <li *ngIf="userRole == 'admin'">
@@ -66,8 +76,6 @@
           Populate DB
         </a>
       </li>
-      <li *ngIf="!userRole"><a routerLink="login" class="text-white hover:text-custom-hover_effect text-xl hover:font-bold">Login</a></li>
-      <li *ngIf="userRole"><a routerLink="profil" class="text-white hover:text-custom-hover_effect text-xl hover:font-bold">Profil</a></li>
     </ul>
   </nav>
 </header>

@@ -1,17 +1,20 @@
-<ng-container *ngIf="ingredient">
-    <h1>Modify ingredient</h1>
-    <form [formGroup]="ingredientForm" (ngSubmit)="onSubmit()">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" formControlName="name" style="background-color: white; color: black; width: 100%; padding: 8px;">
-        <br>
-        <label for="stock">Adding stock (actual : {{ ingredient.stock }}):</label>
-        <input type="number" id="addStock" name="addStock" formControlName="addStock" style="background-color: white; color: black; width: 100%; padding: 8px;">
-        <br>
-        <button type="submit">Modify</button>
-    </form>
-    
-    <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
-    <app-redirection-dialog [message]="dialogMessage" [showRedirectionDialog]="showRedirectionDialog" [redirectUrl]="'/ingredients'" (closeRedictionDialog)="closeRedirectionDialog()"></app-redirection-dialog>
-</ng-container>
-
+<div class="flex items-center justify-center mt-[6rem] mb-[10rem]">
+    <div class="bg-[#533619] rounded-lg p-6 w-[30rem]">
+        <ng-container *ngIf="ingredient">
+            <h1 class="text-3xl font-bold">Modify ingredient</h1>
+            <form [formGroup]="ingredientForm" (ngSubmit)="onSubmit()" class="mt-4">
+                <label for="name" class="block mb-2">Name:</label>
+                <input type="text" id="name" name="name" formControlName="name" class="w-full rounded px-3 py-2 focus:outline-none focus:border-blue-500" style="background-color: white; color: black;">
+                <br>
+                <label for="addStock" class="block mt-[1rem] mb-2">Adding stock (actual : {{ ingredient.stock }}):</label>
+                <input type="number" id="addStock" name="addStock" formControlName="addStock" class="bg-white w-full border-2 rounded px-3 py-2">
+                <br>
+                <button type="submit" class="mt-[1.2rem] w-full bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">Modify</button>
+            </form>
+            
+            <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
+            <app-redirection-dialog [message]="dialogMessage" [showRedirectionDialog]="showRedirectionDialog" [redirectUrl]="'/ingredients'" (closeRedictionDialog)="closeRedirectionDialog()"></app-redirection-dialog>
+        </ng-container>
+    </div>
+</div>
 <app-not-found *ngIf="!ingredient"></app-not-found>
