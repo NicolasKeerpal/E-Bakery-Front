@@ -14,7 +14,8 @@
             <th class="border border-[#533619] p-2">Qty</th>
             <th class="border border-[#533619] p-2">Price</th>
             <th class="border border-[#533619] p-2">Deliveryman</th>
-            <th class="border border-[#533619] p-2">Date</th>
+            <th class="border border-[#533619] p-2">Created date</th>
+            <th class="border border-[#533619] p-2">Due date</th>
             <th class="border border-[#533619] p-2">Delivered</th>
             <th class="border border-[#533619] p-2">Validation</th>
           </tr>
@@ -26,7 +27,8 @@
             <td class="border border-[#533619] p-2">{{ getFoodPrice(order.foodId) | price : "€" }}</td>
             <td class="border border-[#533619] p-2">{{ order.deliverymanId }}</td>
             <td class="border border-[#533619] p-2">{{ order.createdAt | date:'dd/MM/yyyy' }}</td>
-            <td class="border border-[#533619] p-2">{{ order.dueDate | dueDateFormat }}</td>
+            <td class="border border-[#533619] p-2">{{ order.dueDate | date:'dd/MM/yyyy' }}</td>
+            <td class="border border-[#533619] p-2">{{ order.deliveryDate }}</td>
             <td class="border border-[#533619] p-2">
               <button *ngIf="!order.validation" (click)="validateOrder(order.id)">Validate</button>
               <button *ngIf="order.validation" disabled>Validated</button>
