@@ -23,6 +23,7 @@ import { IngredientInterceptor } from './interceptors/ingredient.interceptor';
 import { ProductInterceptor } from './interceptors/product.interceptor';
 import { CompositionInterceptor } from './interceptors/composition.interceptor';
 import { OrderInterceptor } from './interceptors/order.interceptor';
+import { PopulateDbInterceptor } from './interceptors/populate-db.interceptor';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { SharedModule } from './shared/shared.module';
@@ -52,7 +53,7 @@ import { BuyScreenComponent } from './components/buy-screen/buy-screen.component
     UpdateProfilComponent,
     OrdersListComponent,
     DueDateFormatPipe,
-    BuyScreenComponent
+    BuyScreenComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +73,7 @@ import { BuyScreenComponent } from './components/buy-screen/buy-screen.component
     { provide: HTTP_INTERCEPTORS, useClass: CompositionInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: EmployeeInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: OrderInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: PopulateDbInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
