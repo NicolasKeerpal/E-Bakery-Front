@@ -9,17 +9,22 @@
       <div class="ml-[5rem] flex-1 ">
         <p class="text-[3rem] font-bold mb-4 text-center">{{ food.name }}</p>
   
-        <p class="text-[1.2rem]">Prix : {{ food.price | price : '€' }}</p>
+        <p class="text-[1.2rem]">Price : {{ food.price | price : '€' }}</p>
         <p class=" mt-[0.5rem] text-[1.2rem]">Description :</p>
         <p>{{ food.description }}</p>
   
-        <ng-container *ngIf="userRole == 'admin'" class="mt-[1.5rem]">
-          <button class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline">
-            Modify
-          </button>
-          <button class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline">
-            Delete
-          </button>
+        <ng-container *ngIf="userRole == 'admin'">
+          <p class=" mt-[0.5rem] text-[1.2rem]">Stock : {{ food.stock }}</p>
+          
+          <div class="mt-[1.5rem]">
+            <button [routerLink]="['/our-products', food.id, 'edit']" class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline">
+              Modify
+            </button>
+            <button (click)="deleteProduct(food.id)" class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline">
+              Delete
+            </button>
+          </div>
+
         </ng-container>
   
         <ng-container *ngIf="userRole == 'customer'" >
@@ -36,13 +41,13 @@
         </ng-container>
   
         <ng-container *ngIf="!userRole">
-          <p class="text-red-500 text-lg font-bold mt-4">
-            Login to order! <a routerLink="/login" class="text-blue-500 hover:underline">Login</a>
+          <p class="text-white text-lg font-bold mt-4">
+            Login to order! <a routerLink="/login" class="text-custom-hover_effect hover:underline ">Login</a>
           </p>
         </ng-container>
   
         <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
-        <app-redirection-dialog [message]="dialogMessage" [showRedirectionDialog]="showRedirectionDialog" [redirectUrl]="'/cart'" (closeRedirectionDialog)="closeRedirectionDialog()"></app-redirection-dialog>
+        <app-redirection-dialog [message]="dialogMessage" [showRedirectionDialog]="showRedirectionDialog" [redirectUrl]="redirectUrl" (closeRedirectionDialog)="closeRedirectionDialog()"></app-redirection-dialog>
       </div>
     </div>
   </ng-container>

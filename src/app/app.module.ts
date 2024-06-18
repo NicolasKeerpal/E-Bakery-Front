@@ -30,9 +30,8 @@ import { SharedModule } from './shared/shared.module';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { UpdateProfilComponent } from './components/update-profil/update-profil.component';
 import { OrdersListComponent } from './components/orders-list/orders-list.component';
-import { DueDateFormatPipe } from './pipes/due-date-format.pipe';
 import { BuyScreenComponent } from './components/buy-screen/buy-screen.component';
-import { UpdateFoodComponent } from './components/update-food/update-food.component';
+import { UpdateProductComponent } from './components/update-product/update-product.component';
 
 @NgModule({
   declarations: [
@@ -53,9 +52,8 @@ import { UpdateFoodComponent } from './components/update-food/update-food.compon
     AddProductComponent,
     UpdateProfilComponent,
     OrdersListComponent,
-    DueDateFormatPipe,
     BuyScreenComponent,
-    UpdateFoodComponent,
+    UpdateProductComponent,
   ],
   imports: [
     BrowserModule,

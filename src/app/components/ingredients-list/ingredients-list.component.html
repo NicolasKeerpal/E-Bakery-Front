@@ -2,15 +2,15 @@
   <div class="w-full">
     <h1 class="text-3xl font-bold text-white pl-2">Ingredients :</h1>
     <div class="mt-4 pl-2">
-      Search <input class="w-80 h-10 border-2 border-custom-secondary_color rounded bg-transparent text-white placeholder-[#533619] focus:outline-none px-2" type="text" [(ngModel)]="searchQuery" placeholder="Search an ingredient" (input)="filterIngredients()">
-      <button routerLink="/ingredients/add" class="ml-2 px-4 py-2 bg-[#533619] text-white rounded hover:bg-opacity-75 focus:outline-none">Add</button>
+      Search <input class="w-80 h-10 border-2 border-custom-secondary_color rounded bg-transparent text-white placeholder-custom-secondary_color focus:outline-none px-2" type="text" [(ngModel)]="searchQuery" placeholder="Search an ingredient" (input)="filterIngredients()">
+      <button routerLink="/ingredients/add" class="ml-2 px-4 py-2 bg-custom-secondary_color text-white rounded hover:bg-opacity-75 focus:outline-none">Add</button>
     </div>
 
     <div class="flex items-center justify-between mt-4 pl-2">
       <div *ngIf="totalItems > itemsPerPage">
-        <button (click)="prevPage()" class="px-4 py-2 bg-[#533619] text-white rounded hover:bg-opacity-75 focus:outline-none">←</button>
+        <button (click)="prevPage()" class="px-4 py-2 bg-custom-secondary_color text-white rounded hover:bg-opacity-75 focus:outline-none">←</button>
         <span class="text-white">Page : {{currentPage}}/{{totalPages}}</span>
-        <button (click)="nextPage()" class="px-4 py-2 bg-[#533619] text-white rounded hover:bg-opacity-75 focus:outline-none">→</button>
+        <button (click)="nextPage()" class="px-4 py-2 bg-custom-secondary_color text-white rounded hover:bg-opacity-75 focus:outline-none">→</button>
       </div>
     </div>
 

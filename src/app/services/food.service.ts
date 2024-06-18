@@ -58,8 +58,17 @@ export class FoodService {
     return from(Promise.all(promises));
   }
 
-  putFood(id: number, data: any) {
-    return this.http.put(`${this.url}/foods/${id}`, data);
+  putFood(id: number, data: any, image: File | null) {
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('description', data.description);
+    formData.append('price', data.price.toString());
+    formData.append('addStock', data.addStock.toString());
+    if (image) {
+      formData.append('image', image);
+    }
+
+    return this.http.put(`${this.url}/foods/${id}`, formData);
   }
 
   delFood(id: number) {

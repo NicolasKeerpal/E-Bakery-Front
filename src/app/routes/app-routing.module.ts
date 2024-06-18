@@ -16,11 +16,13 @@ import { UpdateProfilComponent } from '../components/update-profil/update-profil
 import { CartComponent } from '../components/cart/cart.component';
 import { OrdersListComponent } from '../components/orders-list/orders-list.component';
 import { BuyScreenComponent } from '../components/buy-screen/buy-screen.component';
+import { UpdateProductComponent } from '../components/update-product/update-product.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'our-products', component: OurProductsComponent },
   { path: 'our-products/add', component: AddProductComponent , canActivate: [AuthByRoleGuard], data: { roles: ['admin'] } },
+  { path: 'our-products/:id/edit', component: UpdateProductComponent , canActivate: [AuthByRoleGuard], data: { roles: ['admin'] } },
   { path: 'our-products/:id', component: ProductComponent },
   { path: 'ingredients', loadChildren: () => import('./modules/ingredients.module').then(m => m.IngredientsModule) , canActivate: [AuthByRoleGuard], data: { roles: ['admin'] }},
   { path: 'populate-db', loadChildren: () => import('./modules/populate-db.module').then(m => m.PopulateDbModule) , canActivate: [AuthByRoleGuard], data: { roles: ['admin'] } },

@@ -31,7 +31,14 @@
             <td class=" p-2 text-white text-center">{{ order.deliverymanId }}</td>
             <td class=" p-2 text-white text-center">{{ order.createdAt | date:'dd/MM/yyyy' }}</td>
             <td class=" p-2 text-white text-center">{{ order.dueDate | date:'dd/MM/yyyy' }}</td>
-            <td class=" p-2 text-white text-center">{{ order.deliveryDate }}</td>
+            <td class=" p-2 text-white text-center">
+              <ng-container *ngIf="order.deliveryDate">
+                {{ order.deliveryDate | date:'dd/MM/yyyy' }}
+              </ng-container>
+              <ng-container *ngIf="!order.deliveryDate">
+                In progress...
+              </ng-container>
+            </td>
             <td class=" p-2 text-white text-center">
               <button *ngIf="!order.validation" (click)="validateOrder(order.id)" class="px-4 py-2 bg-[#533619] text-white rounded hover:bg-opacity-75 focus:outline-none">Validate</button>
               <button *ngIf="order.validation" disabled class="px-4 py-2 bg-[#533619] text-white rounded opacity-50 cursor-not-allowed">Validated</button>

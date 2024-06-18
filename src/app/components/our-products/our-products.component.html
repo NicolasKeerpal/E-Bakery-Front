@@ -11,9 +11,9 @@
     </button>
   </div>
   <div *ngIf="totalItems > itemsPerPage" class="flex items-center justify-center mt-4 font-bold ">
-    <button (click)="prevPage()" class="px-4 bg-custom-secondary_color text-white rounded-md mr-2 text-[2rem]">&lt;</button>
+    <button (click)="prevPage()" class="px-4 bg-custom-secondary_color text-white rounded-md mr-2 text-[2rem]">←</button>
     <span class="text-2xl">Page: {{ currentPage }}/{{ totalPages }}</span>
-    <button (click)="nextPage()" class="px-4 bg-custom-secondary_color text-white rounded-md ml-2 text-[2rem]">&gt;</button>
+    <button (click)="nextPage()" class="px-4 bg-custom-secondary_color text-white rounded-md ml-2 text-[2rem]">→</button>
   </div>
   
   
@@ -27,9 +27,9 @@
   </div>
   
   <div *ngIf="totalItems > itemsPerPage" class="flex items-center justify-center mt-4 font-bold mb-[2rem]">
-    <button (click)="prevPage()" class="px-4 bg-custom-secondary_color text-white rounded-md mr-2 text-[2rem]">&lt;</button>
+    <button (click)="prevPage()" class="px-4 bg-custom-secondary_color text-white rounded-md mr-2 text-[2rem]">←</button>
     <span class="text-2xl">Page: {{ currentPage }}/{{ totalPages }}</span>
-    <button (click)="nextPage()" class="px-4 bg-custom-secondary_color text-white rounded-md ml-2 text-[2rem]">&gt;</button>
+    <button (click)="nextPage()" class="px-4 bg-custom-secondary_color text-white rounded-md ml-2 text-[2rem]">→</button>
   </div>
 </div>
 
