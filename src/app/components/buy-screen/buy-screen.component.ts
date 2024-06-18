@@ -18,7 +18,9 @@ export class BuyScreenComponent {
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private orderService: OrderService, private router: Router) { 
     this.buyForm = this.formBuilder.group({
-      hour: ['', Validators.required],
+      hour: ['', [Validators.required, Validators.pattern(/^(?:[01]\d|2[0-3]):[0-5]\d$/)]],
+      number: ['', [Validators.required, Validators.pattern(/^\d{16}$/)]],
+      name: ['', [Validators.required, Validators.pattern(/^[A-Z][a-z]+ [A-Z][a-z]+$/)]],
     });
   }
 
@@ -52,8 +54,7 @@ export class BuyScreenComponent {
           }
         );
       } else {
-        this.dialogMessage = 'Please fill in all required fields.';
-        this.showDialog = true;
+        this.buyForm.markAllAsTouched();
       }
     });
   }

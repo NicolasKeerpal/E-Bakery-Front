@@ -23,8 +23,8 @@ export class AddProductComponent {
   constructor(private formBuilder: FormBuilder, private foodService: FoodService, private ingredientService: IngredientService) {
     this.productForm = this.formBuilder.group({
       name: ['', Validators.required],
-      stock: ['', Validators.required],
-      price: ['', Validators.required],
+      stock: ['', [Validators.required, Validators.min(0), Validators.max(10000), Validators.pattern(/^-?\d+$/)]],
+      price: ['', [Validators.required, Validators.min(0), Validators.max(10000)]],
       description: ['', Validators.required],
     });
   }
@@ -41,7 +41,31 @@ export class AddProductComponent {
   }
 
   onFileSelected(event: any) {
-    this.selectedImage = event.target.files[0]; 
+    const file: File = event.target.files[0];
+
+    if (file) {
+      const allowedTypes = ['image/jpeg', 'image/png'];
+      if (!allowedTypes.includes(file.type)) {
+        this.dialogMessage = 'The image must be in JPG or PNG format.';
+        this.showDialog = true;
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const img = new Image();
+        img.onload = () => {
+          if (img.width === 314 && img.height === 274) {
+            this.selectedImage = file;
+          } else {
+            this.dialogMessage = 'The image must have a size of 314 x 274 pixels.';
+            this.showDialog = true;
+          }
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   onSubmit() {
@@ -68,7 +92,9 @@ export class AddProductComponent {
       );
     } else {
       if (!this.productForm.valid) {
-        this.dialogMessage = 'Please fill in all required fields.';
+        this.productForm.markAllAsTouched();
+      } else if (!this.selectedImage) {
+        this.dialogMessage = 'You must have an image.';
         this.showDialog = true;
       } else {
         this.dialogMessage = 'You must have at least 1 ingredient in your composition.';

@@ -1,5 +1,22 @@
 <ng-container *ngIf="food">
-    <p>product works!</p>
+    <p>{{ food.name }}</p>
+
+    <ng-container *ngIf="userRole=='admin'">
+        <button>Modify</button>
+        <button>Delete</button>
+    </ng-container>
+    <ng-container *ngIf="userRole=='customer'">
+            <button (click)="addCart()">Add cart</button>
+            <button (click)="delNb()">-</button>
+            {{ addNumber }}
+            <button (click)="addNb()">+</button>
+    </ng-container>
+    <ng-container *ngIf="userRole==null">
+        <p>Login to order ! <a routerLink="/login" class="text-custom-hover_effect hover:underline">Login</a></p>
+    </ng-container>
+
+    <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
+<app-redirection-dialog [message]="dialogMessage" [showRedirectionDialog]="showRedirectionDialog" [redirectUrl]="'/cart'" (closeRedictionDialog)="closeRedirectionDialog()"></app-redirection-dialog>
 </ng-container>
 
 <app-not-found *ngIf="!food"></app-not-found>

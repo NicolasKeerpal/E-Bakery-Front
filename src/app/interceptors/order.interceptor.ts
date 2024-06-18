@@ -28,6 +28,13 @@ export class OrderInterceptor implements HttpInterceptor {
             return throwError(() => new Error(errorMessage));
           })
         );
+      } else if (req.method == 'POST') {
+        return next.handle(clonedRequest).pipe(
+          catchError((error: HttpErrorResponse) => {
+            let errorMessage = 'An error occurred';
+            return throwError(() => new Error(errorMessage));
+          })
+        );
       } else {
         return next.handle(clonedRequest);
       }

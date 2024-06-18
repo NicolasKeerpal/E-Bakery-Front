@@ -3,12 +3,23 @@
         <ng-container *ngIf="ingredient">
             <h1 class="text-3xl font-bold">Modify ingredient</h1>
             <form [formGroup]="ingredientForm" (ngSubmit)="onSubmit()" class="mt-4">
-                <label for="name" class="block mb-2">Name:</label>
-                <input type="text" id="name" name="name" formControlName="name" class="w-full rounded px-3 py-2 focus:outline-none focus:border-blue-500" style="background-color: white; color: black;">
-                <br>
-                <label for="addStock" class="block mt-[1rem] mb-2">Adding stock (actual : {{ ingredient.stock }}):</label>
-                <input type="number" id="addStock" name="addStock" formControlName="addStock" class="bg-white w-full border-2 rounded px-3 py-2">
-                <br>
+                <div class="mb-4">
+                    <label for="name">Name (*):</label>
+                    <input type="text" id="name" name="name" formControlName="name" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+                    <div *ngIf="ingredientForm.get('name')?.invalid && ingredientForm.get('name')?.touched">
+                        <small *ngIf="ingredientForm.get('name')?.errors?.['required']" class="text-red-500 font-bold">Name is required.</small>
+                    </div>
+                </div>
+            
+                <div class="mb-4">
+                    <label for="stock">Adding stock (actual : {{ ingredient.stock }}):</label>
+                    <input type="number" id="addStock" name="addStock" formControlName="addStock" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+                    <div *ngIf="ingredientForm.get('addStock')?.invalid && ingredientForm.get('addStock')?.touched">
+                        <small *ngIf="ingredientForm.get('addStock')?.errors?.['pattern']" class="text-red-500 font-bold">Adding stock must be an integer.</small>
+                        <small *ngIf="ingredientForm.get('addStock')?.errors?.['min']" class="text-red-500 font-bold">Minimum adding stock is 0.</small>
+                        <small *ngIf="ingredientForm.get('addStock')?.errors?.['max']" class="text-red-500 font-bold">Maximum adding stock is 500.</small>
+                    </div>
+                </div>
                 <button type="submit" class="mt-[1.2rem] w-full bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">Modify</button>
             </form>
             

@@ -19,7 +19,7 @@ export class UpdateIngredientComponent {
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private ingredientService: IngredientService) {
     this.ingredientForm = this.formBuilder.group({
       name: ['', Validators.required],
-      addStock: ['', Validators.required],
+      addStock: ['', [Validators.min(0), Validators.max(500), Validators.pattern(/^-?\d+$/)]],
     });
   }
 
@@ -60,8 +60,7 @@ export class UpdateIngredientComponent {
           }
         );
       } else {
-        this.dialogMessage = 'Please fill in all required fields.';
-        this.showDialog = true;
+        this.ingredientForm.markAllAsTouched();
       }
     });
   }
