@@ -13,13 +13,18 @@
         <p class=" mt-[0.5rem] text-[1.2rem]">Description :</p>
         <p>{{ food.description }}</p>
   
-        <ng-container *ngIf="userRole == 'admin'" class="mt-[1.5rem]">
-          <button class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline">
-            Modify
-          </button>
-          <button class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline">
-            Delete
-          </button>
+        <ng-container *ngIf="userRole == 'admin'">
+          <p class=" mt-[0.5rem] text-[1.2rem]">Stock : {{ food.stock }}</p>
+          
+          <div class="mt-[1.5rem]">
+            <button [routerLink]="['/our-products', food.id, 'edit']" class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline">
+              Modify
+            </button>
+            <button (click)="deleteProduct(food.id)" class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline">
+              Delete
+            </button>
+          </div>
+
         </ng-container>
   
         <ng-container *ngIf="userRole == 'customer'" >
@@ -42,7 +47,7 @@
         </ng-container>
   
         <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
-        <app-redirection-dialog [message]="dialogMessage" [showRedirectionDialog]="showRedirectionDialog" [redirectUrl]="'/cart'" (closeRedirectionDialog)="closeRedirectionDialog()"></app-redirection-dialog>
+        <app-redirection-dialog [message]="dialogMessage" [showRedirectionDialog]="showRedirectionDialog" [redirectUrl]="redirectUrl" (closeRedirectionDialog)="closeRedirectionDialog()"></app-redirection-dialog>
       </div>
     </div>
   </ng-container>

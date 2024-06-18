@@ -17,6 +17,7 @@ export class ProductComponent {
   showDialog: boolean = false;
   showRedirectionDialog: boolean = false;
   dialogMessage: string = '';
+  redirectUrl: string = '/cart';
 
   constructor(
     private route: ActivatedRoute,
@@ -86,5 +87,19 @@ export class ProductComponent {
 
   closeRedirectionDialog(): void {
     this.showRedirectionDialog = false;
+  }
+
+  deleteProduct(id: number): void {
+    this.foodService.delFood(id).subscribe(
+      () => {
+        this.dialogMessage = "Product was deleted succesfully !";
+        this.redirectUrl = '/our-products';
+        this.showRedirectionDialog = true;
+      },
+      error => {
+        this.dialogMessage = error.message;
+        this.showDialog = true;
+      }
+    );
   }
 }

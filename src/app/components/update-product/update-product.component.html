@@ -1,0 +1,88 @@
+
+        <ng-container *ngIf="food">
+            <div class="flex items-center justify-center mt-[3rem] mb-[3rem]">
+                <div class="bg-[#533619] rounded-lg p-6 w-[40rem]">
+                    <h1 class="text-2xl font-bold pt-4 pb-2 text-center">Updating product</h1>
+
+                    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="max-w-sm mx-auto">
+                    <div class="mb-4">
+                        <label for="name" class="block mb-1">Name (*):</label>
+                        <input type="text" id="name" name="name" formControlName="name"
+                        class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+                        <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched">
+                            <small *ngIf="productForm.get('name')?.errors?.['required']" class="text-red-500 font-bold">Name is required.</small>
+                        </div>
+                    </div>
+            
+                    <div class="mb-4">
+                        <label for="image" class="block mb-1">New image :</label>
+                        <input type="file" id="image" name="image" (change)="onFileSelected($event)"
+                        class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+                    </div>
+            
+                    <div class="mb-4">
+                        <label for="price" class="block mb-1">Price (*):</label>
+                        <input type="number" id="price" name="price" formControlName="price"
+                        class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+                        <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched">
+                            <small *ngIf="productForm.get('price')?.errors?.['required']" class="text-red-500 font-bold">Price is required.</small>
+                            <small *ngIf="productForm.get('price')?.errors?.['min']" class="text-red-500 font-bold">Minimum price is 0.</small>
+                            <small *ngIf="productForm.get('price')?.errors?.['max']" class="text-red-500 font-bold">Maximum price is 10000.</small>
+                        </div>
+                    </div>
+            
+                    <div class="mb-4">
+                        <label for="description" class="block mb-1">Description (*):</label>
+                        <textarea id="description" name="description" formControlName="description"
+                        class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"></textarea>
+                        <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched">
+                            <small *ngIf="productForm.get('description')?.errors?.['required']" class="text-red-500 font-bold">Description is required.</small>
+                        </div>
+                    </div>
+            
+                    <div class="mb-4">
+                        <label for="addStock" class="block mb-1">Adding addStock:</label>
+                        <input type="number" id="addStock" name="addStock" formControlName="addStock"
+                        class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+                        <div *ngIf="productForm.get('addStock')?.invalid && productForm.get('addStock')?.touched">
+                            <small *ngIf="productForm.get('addStock')?.errors?.['required']" class="text-red-500 font-bold">Adding stock is required.</small>
+                            <small *ngIf="productForm.get('addStock')?.errors?.['pattern']" class="text-red-500 font-bold">Adding stock must be an integer.</small>
+                            <small *ngIf="productForm.get('addStock')?.errors?.['min']" class="text-red-500 font-bold">Minimum Adding stock is 0.</small>
+                            <small *ngIf="productForm.get('addStock')?.errors?.['max']" class="text-red-500 font-bold">Maximum Adding stock is 500.</small>
+                        </div>
+                    </div>
+            
+                    <div class="mb-4">
+                        <label class="block mb-1">Composition (No functionnal):</label>
+                        <select [(ngModel)]="selectedIngredientIndex" [ngModelOptions]="{ standalone: true }"
+                        class=" w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+                        <option *ngFor="let ingredient of ingredients; let i = index" [value]="i">{{ ingredient.name }}</option>
+                        </select>
+                        <button type="button" (click)="addComposition()"
+                        class="mt-[1rem] bg-custom-primary_color text-white font-bold py-2 px-4 rounded-md ml-2 focus:outline-none">+</button>
+                    </div>
+            
+                    <div>
+                        <h3 class="font-bold text-[1.2rem]">Ingredients in Composition :</h3>
+                        <div *ngIf="composition.length > 0">
+                        <div *ngFor="let ingredient of composition" class="flex items-center mb-2">
+                            <span>{{ ingredient.name }}</span>
+                            <button type="button" (click)="delComposition(ingredient.id)"
+                            class="bg-red-500 text-white font-bold py-1 px-2 ml-2 rounded-md focus:outline-none">-</button>
+                        </div>
+                        </div>
+                        <div *ngIf="composition.length == 0" class="text-white">No ingredients added yet.</div>
+                    </div>
+            
+                    <button type="submit"
+                        class="w-full mt-4 bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline mb-[2rem]">Modify</button>
+                    </form>
+            
+                    <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
+                    <app-redirection-dialog [message]="dialogMessage" [showRedirectionDialog]="showRedirectionDialog"
+                    [redirectUrl]="'/our-products/' + food.id" (closeRedictionDialog)="closeRedirectionDialog()"></app-redirection-dialog>
+                </div>
+            </div>
+        </ng-container>
+
+<app-not-found *ngIf="!food"></app-not-found>
