@@ -1,15 +1,20 @@
-<h1>Populate database</h1>
-
-<p>/!\ WARNING /!\</p>
-
-<p>
-    Filling the database will delete all existing data and populate the database with new data.<br>
-    Be sure that you can do this without losing important data or disrupting the proper functioning<br>
-    of the website. You will also be disconnected.
-</p>
-
-<button (click)="onPopulateDB()">Populate DB</button>
-
-<app-loading-dialog [showLoadingDialog]="showLoadingDialog"></app-loading-dialog>
-<app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
-<app-redirection-dialog [message]="dialogMessage" [showRedirectionDialog]="showRedirectionDialog" [redirectUrl]="'/login'" (closeRedictionDialog)="closeRedirectionDialog()"></app-redirection-dialog>
+<div class="max-w-2xl mx-auto mt-8 p-6 bg-custom-secondary_color shadow-md rounded-lg">
+    <h1 class="text-3xl font-bold mb-4">Populate database</h1>
+  
+    <p class="text-red-600 font-bold mb-4">/!\ WARNING /!\</p>
+  
+    <p class="mb-4">
+      Filling the database will delete all existing data and populate the database with new data.<br>
+      Be sure that you can do this without losing important data or disrupting the proper functioning<br>
+      of the website. You will also be disconnected.
+    </p>
+  
+    <button (click)="onPopulateDB()" class="bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+      Populate DB
+    </button>
+  
+    <app-loading-dialog [showLoadingDialog]="showLoadingDialog"></app-loading-dialog>
+    <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
+    <app-redirection-dialog [message]="dialogMessage" [showRedirectionDialog]="showRedirectionDialog" [redirectUrl]="'/login'" (closeRedictionDialog)="closeRedirectionDialog()"></app-redirection-dialog>
+  </div>
+  

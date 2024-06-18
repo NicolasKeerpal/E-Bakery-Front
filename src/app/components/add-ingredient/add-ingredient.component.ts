@@ -16,7 +16,7 @@ export class AddIngredientComponent {
   constructor(private formBuilder: FormBuilder, private ingredientService: IngredientService) {
     this.ingredientForm = this.formBuilder.group({
       name: ['', Validators.required],
-      stock: ['', Validators.required],
+      stock: ['', [Validators.required, Validators.min(0), Validators.max(10000), Validators.pattern(/^-?\d+$/)]],
     });
   }
 
@@ -40,8 +40,7 @@ export class AddIngredientComponent {
         }
       );
     } else {
-      this.dialogMessage = 'Please fill in all required fields.';
-      this.showDialog = true;
+      this.ingredientForm.markAllAsTouched();
     }
   }
 

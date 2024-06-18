@@ -11,7 +11,6 @@ import { AuthService } from '../../services/auth.service';
 export class HomeComponent implements OnInit {
   foods: Food[] = [];
   displayedFoods: Food[] = [];
-  searchQuery: string = '';
   userRole: string | null = null;
 
   constructor(private foodService: FoodService, private authService: AuthService) { }
@@ -27,11 +26,5 @@ export class HomeComponent implements OnInit {
         this.foods = [];
       }
     );
-  }
-
-  filterFoods(): void {
-    this.displayedFoods = this.foods
-      .filter(food => food.name.toLowerCase().startsWith(this.searchQuery.toLowerCase()))
-      .slice(0, 3);
   }
 }

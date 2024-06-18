@@ -26,12 +26,6 @@ export class OrderService {
     );
   }
 
-  getDeliveryListOrders(): Observable<Order[]> {
-    return this.http.get<{ success: boolean, data: Order[] }>(`${this.url}/purchases/deliveries/all`).pipe(
-      map(response => new ExtractTabDataPipe().transform(response)) 
-    );
-  }
-
   getOrder(id: number): Observable<Order | null> {
     return this.http.get<{ success: boolean, data: Order }>(`${this.url}/purchases/${id}`).pipe(
       map(response => response.success ? response.data : null),

@@ -16,7 +16,7 @@ export class LoginComponent {
 
   constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router, private authService: AuthService) {
     this.loginForm = this.formBuilder.group({
-      mail: ['', Validators.required],
+      mail: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       role: ['customer', Validators.required]
     });
@@ -41,8 +41,7 @@ export class LoginComponent {
         }
       );
     } else {
-      this.dialogMessage = 'Please fill in all required fields.';
-      this.showDialog = true;
+      this.loginForm.markAllAsTouched();
     }
   }
 

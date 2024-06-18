@@ -1,50 +1,57 @@
-<h1>My orders :</h1>
+<div class="flex items-center justify-center mt-8 mb-2">
+  <div class="w-full">
+    <h1 class="text-3xl font-bold text-white pl-2">My orders :</h1>
 
-<ng-container *ngIf="orders.length > 0">
-    <div *ngIf="totalItems > itemsPerPage">
-        <button (click)="prevPage()"><</button>
-        Page : {{currentPage}}/{{totalPages}}
-        <button (click)="nextPage()">></button>
-    </div>
-    
-    <table class="w-full mt-4 border-collapse border border-[#533619]">
+    <ng-container *ngIf="orders.length > 0">
+      <div *ngIf="totalItems > itemsPerPage" class="flex items-center justify-between mt-4">
+        <button (click)="prevPage()" class="px-4 py-2 bg-[#533619] text-white rounded hover:bg-opacity-75 focus:outline-none">&lt;</button>
+        <span class="text-white">Page : {{currentPage}}/{{totalPages}}</span>
+        <button (click)="nextPage()" class="px-4 py-2 bg-[#533619] text-white rounded hover:bg-opacity-75 focus:outline-none">&gt;</button>
+      </div>
+      
+      <table class="w-full mt-4 border-collapse">
         <thead>
-          <tr>
-            <th class="border border-[#533619] p-2">Product</th>
-            <th class="border border-[#533619] p-2">Qty</th>
-            <th class="border border-[#533619] p-2">Price</th>
-            <th class="border border-[#533619] p-2">Deliveryman</th>
-            <th class="border border-[#533619] p-2">Date</th>
-            <th class="border border-[#533619] p-2">Delivered</th>
-            <th class="border border-[#533619] p-2">Validation</th>
+          <tr class="text-white">
+            <th class="p-2 text-white">Product</th>
+            <th class="p-2 text-white">Qty</th>
+            <th class="p-2 text-white">Price</th>
+            <th class="p-2 text-white">Deliveryman</th>
+            <th class="p-2 text-white">Created date</th>
+            <th class="p-2 text-white">Due date</th>
+            <th class="p-2 text-white">Delivered</th>
+            <th class="p-2 text-white">Validation</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let order of paginatedOrders">
-            <td class="border border-[#533619] p-2">{{ getFoodName(order.foodId) }}</td>
-            <td class="border border-[#533619] p-2">{{ order.qty }}</td>
-            <td class="border border-[#533619] p-2">{{ getFoodPrice(order.foodId) | price : "€" }}</td>
-            <td class="border border-[#533619] p-2">{{ order.deliverymanId }}</td>
-            <td class="border border-[#533619] p-2">{{ order.createdAt | date:'dd/MM/yyyy' }}</td>
-            <td class="border border-[#533619] p-2">{{ order.dueDate | dueDateFormat }}</td>
-            <td class="border border-[#533619] p-2">
-              <button *ngIf="!order.validation" (click)="validateOrder(order.id)">Validate</button>
-              <button *ngIf="order.validation" disabled>Validated</button>
+          <ng-container *ngFor="let order of paginatedOrders let i = index">
+          <tr  class="{{ i % 2 === 0 ? 'bg-custom-secondary_color' : 'bg-custom-primary' }}">
+            <td class=" p-2 text-white text-center">{{ getFoodName(order.foodId) }}</td>
+            <td class=" p-2 text-white text-center">{{ order.qty }}</td>
+            <td class=" p-2 text-white text-center">{{ getFoodPrice(order.foodId) | price : "€" }}</td>
+            <td class=" p-2 text-white text-center">{{ order.deliverymanId }}</td>
+            <td class=" p-2 text-white text-center">{{ order.createdAt | date:'dd/MM/yyyy' }}</td>
+            <td class=" p-2 text-white text-center">{{ order.dueDate | date:'dd/MM/yyyy' }}</td>
+            <td class=" p-2 text-white text-center">{{ order.deliveryDate }}</td>
+            <td class=" p-2 text-white text-center">
+              <button *ngIf="!order.validation" (click)="validateOrder(order.id)" class="px-4 py-2 bg-[#533619] text-white rounded hover:bg-opacity-75 focus:outline-none">Validate</button>
+              <button *ngIf="order.validation" disabled class="px-4 py-2 bg-[#533619] text-white rounded opacity-50 cursor-not-allowed">Validated</button>
             </td>
-
           </tr>
+        </ng-container>
         </tbody>
       </table>
-    
-    <div *ngIf="totalItems > itemsPerPage">
-      <button (click)="prevPage()"><</button>
-      Page : {{currentPage}}/{{totalPages}}
-      <button (click)="nextPage()">></button>
-    </div>
       
-    <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
-</ng-container>
-
-<ng-container *ngIf="orders.length==0">
-<p>You have not orders</p>
-</ng-container>
+      <div *ngIf="totalItems > itemsPerPage" class="flex items-center justify-between mt-4">
+        <button (click)="prevPage()" class="px-4 py-2 bg-[#533619] text-white rounded hover:bg-opacity-75 focus:outline-none">&lt;</button>
+        <span class="text-white">Page : {{currentPage}}/{{totalPages}}</span>
+        <button (click)="nextPage()" class="px-4 py-2 bg-[#533619] text-white rounded hover:bg-opacity-75 focus:outline-none">&gt;</button>
+      </div>
+      
+      <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
+    </ng-container>
+    
+    <ng-container *ngIf="orders.length === 0">
+      <p class="text-white mt-4">You have no orders.</p>
+    </ng-container>
+  </div>
+</div>
