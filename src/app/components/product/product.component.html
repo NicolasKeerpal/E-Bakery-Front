@@ -9,7 +9,7 @@
       <div class="ml-[5rem] flex-1 ">
         <p class="text-[3rem] font-bold mb-4 text-center">{{ food.name }}</p>
   
-        <p class="text-[1.2rem]">Prix : {{ food.price | price : '€' }}</p>
+        <p class="text-[1.2rem]">Price : {{ food.price | price : '€' }}</p>
         <p class=" mt-[0.5rem] text-[1.2rem]">Description :</p>
         <p>{{ food.description }}</p>
   
@@ -36,8 +36,8 @@
         </ng-container>
   
         <ng-container *ngIf="!userRole">
-          <p class="text-red-500 text-lg font-bold mt-4">
-            Login to order! <a routerLink="/login" class="text-blue-500 hover:underline">Login</a>
+          <p class="text-white text-lg font-bold mt-4">
+            Login to order! <a routerLink="/login" class="text-custom-hover_effect hover:underline ">Login</a>
           </p>
         </ng-container>
   
