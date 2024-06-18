@@ -102,7 +102,7 @@ id	firstname	lastname	mail
 - 14	Olivier	Jaune	olivier.jaune@gmail.com	
 - 15	Sophie	Verte	sophie.verte@gmail.com	
 - 16	Thomas	Violet	thomas.violet@gmail.com	
- -18	Farid	Bleu	farid.bleu@gmail.com	
+- 18	Farid	Bleu	farid.bleu@gmail.com	
 - 19	Isabelle	Marron	isabelle.marron@gmail.com	
 - 20	Vincent	Rougeot	vincent.rougeot@gmail.com	
 
