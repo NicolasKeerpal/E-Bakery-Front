@@ -92,19 +92,19 @@ Admin :
 
 Deliveryman (password: mdp for all): 
 id	firstname	lastname	mail
-2	Hamp	Loyé	hamp.loye@gmail.com	
-3	Ali	Expe-Rèss	ali.er@gmail.com
-5	Mana	Jeur	mana.jeur@gmail.com	
-6	Hubert	Ite	hubert.ite@gmail.com	
-7	Délie	Vérroux	delie.verroux@gmail.com
-10	Luc	Martin	luc.martin@gmail.com	
-11	Sylvie	Rouge	sylvie.rouge@gmail.com	
-14	Olivier	Jaune	olivier.jaune@gmail.com	
-15	Sophie	Verte	sophie.verte@gmail.com	
-16	Thomas	Violet	thomas.violet@gmail.com	
-18	Farid	Bleu	farid.bleu@gmail.com	
-19	Isabelle	Marron	isabelle.marron@gmail.com	
-20	Vincent	Rougeot	vincent.rougeot@gmail.com	
+- 2	Hamp	Loyé	hamp.loye@gmail.com	
+- 3	Ali	Expe-Rèss	ali.er@gmail.com
+- 5	Mana	Jeur	mana.jeur@gmail.com	
+- 6	Hubert	Ite	hubert.ite@gmail.com	
+- 7	Délie	Vérroux	delie.verroux@gmail.com
+- 10	Luc	Martin	luc.martin@gmail.com	
+- 11	Sylvie	Rouge	sylvie.rouge@gmail.com	
+- 14	Olivier	Jaune	olivier.jaune@gmail.com	
+- 15	Sophie	Verte	sophie.verte@gmail.com	
+- 16	Thomas	Violet	thomas.violet@gmail.com	
+ -18	Farid	Bleu	farid.bleu@gmail.com	
+- 19	Isabelle	Marron	isabelle.marron@gmail.com	
+- 20	Vincent	Rougeot	vincent.rougeot@gmail.com	
 
 ## Known Bugs
 
