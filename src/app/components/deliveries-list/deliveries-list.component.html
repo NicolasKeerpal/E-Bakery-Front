@@ -1,0 +1,52 @@
+<h1>My deliveries :</h1>
+
+<ng-container *ngIf="orders.length > 0">
+    <div *ngIf="totalItems > itemsPerPage">
+        <button (click)="prevPage()"><</button>
+        Page : {{currentPage}}/{{totalPages}}
+        <button (click)="nextPage()">></button>
+    </div>
+    
+    <table class="w-full mt-4 border-collapse border border-[#533619]">
+        <thead>
+          <tr>
+            <th class="border border-[#533619] p-2">Product</th>
+            <th class="border border-[#533619] p-2">Qty</th>
+            <th class="border border-[#533619] p-2">Customer</th>
+            <th class="border border-[#533619] p-2">Due Date</th>
+            <th class="border border-[#533619] p-2">Address</th>
+            <th class="border border-[#533619] p-2">Customer's validation</th>
+            <th class="border border-[#533619] p-2">Finish</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of paginatedOrders">
+            <td class="border border-[#533619] p-2">{{ getFoodName(order.foodId) }}</td>
+            <td class="border border-[#533619] p-2">{{ order.qty }}</td>
+            <td class="border border-[#533619] p-2">{{ getCustomerName(order.customerId) }}</td>
+            <td class="border border-[#533619] p-2">{{ order.dueDate | date:'dd/MM/yyyy' }}</td>
+            <td class="border border-[#533619] p-2">{{ getCustomerAddress(order.customerId) }}</td>
+            <td class="border border-[#533619] p-2">
+                <button *ngIf="!order.validation" disabled>No validate</button>
+                <button *ngIf="order.validation" disabled>Validated</button>
+            </td>
+            <td class="border border-[#533619] p-2">
+                <button *ngIf="!order.deliveryDate" (click)="finishOrder(order.id)">Finish</button>
+                <p *ngIf="order.deliveryDate">Finished at {{ order.deliveryDate | date:'dd/MM/yyyy' }}</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    
+    <div *ngIf="totalItems > itemsPerPage">
+      <button (click)="prevPage()"><</button>
+      Page : {{currentPage}}/{{totalPages}}
+      <button (click)="nextPage()">></button>
+    </div>
+      
+    <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
+</ng-container>
+
+<ng-container *ngIf="orders.length==0">
+<p>You have no deliveries</p>
+</ng-container>
