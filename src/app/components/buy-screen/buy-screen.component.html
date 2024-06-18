@@ -1,36 +1,39 @@
 <ng-container *ngIf="order">
-    <h1>Purchase</h1>
-    <form [formGroup]="buyForm" (ngSubmit)="onSubmit()">
-        <div class="mb-4">
-            <label for="hour">Delivery hour wanted (*):</label>
-            <input type="text" id="hour" name="hour" formControlName="hour" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
-            <div *ngIf="buyForm.get('hour')?.invalid && buyForm.get('hour')?.touched">
-                <small *ngIf="buyForm.get('hour')?.errors?.['pattern']" class="text-red-500 font-bold">Invalid hour format (Expected format : 00:00).</small>
-                <small *ngIf="buyForm.get('hour')?.errors?.['required']" class="text-red-500 font-bold">Hour is required.</small>
-            </div>
-        </div>
+    <div class="flex items-center justify-center mt-[3rem] mb-[3rem]">
+        <div class="bg-[#533619] rounded-lg p-6 w-[40rem]">
+            <h1 class="text-2xl font-bold pt-4 pb-2 text-center">Purchase</h1>
+            <form [formGroup]="buyForm" (ngSubmit)="onSubmit()">
+                <div class="mb-4">
+                    <label class="block mb-1" for="hour">Delivery hour wanted (*):</label>
+                    <input class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" type="text" id="hour" name="hour" formControlName="hour" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+                    <div *ngIf="buyForm.get('hour')?.invalid && buyForm.get('hour')?.touched">
+                        <small *ngIf="buyForm.get('hour')?.errors?.['pattern']" class="text-red-500 font-bold">Invalid hour format (Expected format : 00:00).</small>
+                        <small *ngIf="buyForm.get('hour')?.errors?.['required']" class="text-red-500 font-bold">Hour is required.</small>
+                    </div>
+                </div>
 
-        <div class="mb-4">
-            <label for="number">Number on card (*):</label>
-            <input type="text" id="number" name="number" formControlName="number" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
-            <div *ngIf="buyForm.get('number')?.invalid && buyForm.get('number')?.touched">
-                <small *ngIf="buyForm.get('number')?.errors?.['pattern']" class="text-red-500 font-bold">Invalid Number format.</small>
-                <small *ngIf="buyForm.get('number')?.errors?.['required']" class="text-red-500 font-bold">Number is required.</small>
-            </div>
-        </div>
+                <div class="mb-4">
+                    <label class="block mb-1" for="number">Number on card (*):</label>
+                    <input class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" type="text" id="number" name="number" formControlName="number" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+                    <div *ngIf="buyForm.get('number')?.invalid && buyForm.get('number')?.touched">
+                        <small *ngIf="buyForm.get('number')?.errors?.['pattern']" class="text-red-500 font-bold">Invalid Number format.</small>
+                        <small *ngIf="buyForm.get('number')?.errors?.['required']" class="text-red-500 font-bold">Number is required.</small>
+                    </div>
+                </div>
 
-        <div class="mb-4">
-            <label for="name">Name on card (*):</label>
-            <input type="text" id="name" name="name" formControlName="name" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
-            <div *ngIf="buyForm.get('name')?.invalid && buyForm.get('name')?.touched">
-                <small *ngIf="buyForm.get('name')?.errors?.['pattern']" class="text-red-500 font-bold">Invalid Name format (Expected format : Firstname Lastname).</small>
-                <small *ngIf="buyForm.get('name')?.errors?.['required']" class="text-red-500 font-bold">Name is required.</small>
-            </div>
-        </div>
+                <div class="mb-4">
+                    <label class="block mb-1" for="name">Name on card (*):</label>
+                    <input class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500" type="text" id="name" name="name" formControlName="name" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+                    <div *ngIf="buyForm.get('name')?.invalid && buyForm.get('name')?.touched">
+                        <small *ngIf="buyForm.get('name')?.errors?.['pattern']" class="text-red-500 font-bold">Invalid Name format (Expected format : Firstname Lastname).</small>
+                        <small *ngIf="buyForm.get('name')?.errors?.['required']" class="text-red-500 font-bold">Name is required.</small>
+                    </div>
+                </div>
 
-        <button type="submit">Buy</button>
-    </form>
-    
+                <button class="w-full mt-4 bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline mb-[2rem]" type="submit">Buy</button>
+            </form>
+        </div>
+    </div>
     <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
     <app-redirection-dialog [message]="dialogMessage" [showRedirectionDialog]="showRedirectionDialog" [redirectUrl]="'/orders'" (closeRedictionDialog)="closeRedirectionDialog()"></app-redirection-dialog>
 </ng-container>
