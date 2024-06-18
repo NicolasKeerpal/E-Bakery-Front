@@ -25,4 +25,11 @@ export class CustomerService {
   putCustomer(id: number, data: any) {
     return this.http.put(`${this.url}/customers/${id}`, data);
   }
+
+  getCustomers(): Observable<Customer[]> {
+    return this.http.get<{ success: boolean, data: Customer[] }>(`${this.url}/customers`).pipe(
+      map(response => response.success ? response.data : []),
+      catchError(() => of([]))
+    ); 
+  }
 }

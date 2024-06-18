@@ -1,0 +1,52 @@
+<div class="flex items-center justify-center mt-8 mb-2">
+  <div class="w-full">
+    <h1>My Deliveries :</h1>
+
+    <ng-container *ngIf="orders.length > 0">
+      <div *ngIf="totalItems > itemsPerPage">
+        <button (click)="prevPage()">←</button>
+        Page: {{ currentPage }}/{{ totalPages }}
+        <button (click)="nextPage()">→</button>
+      </div>
+
+      <table class="w-full mt-4 border-collapse border border-custom-primary_color">
+        <thead>
+          <tr>
+            <th class="border border-[#533619] p-2">Product</th>
+            <th class="border border-[#533619] p-2">Qty</th>
+            <th class="border border-[#533619] p-2">Client</th>
+            <th class="border border-[#533619] p-2">Due Date</th>
+            <th class="border border-[#533619] p-2">Address</th>
+            <th class="border border-[#533619] p-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of paginatedOrders">
+            <td class="border border-custom-primary_color p-2">{{ getFoodName(order.foodId) }}</td>
+            <td class="border border-custom-primary_color p-2">{{ order.qty }}</td>
+            <td class="border border-custom-primary_color p-2"></td>
+            <td class="border border-custom-primary_color p-2"></td>
+            <td class="border border-custom-primary_color p-2"></td>
+            <td class="border border-custom-primary_color p-2">
+              <button (click)="finishOrder(order.id)">
+                {{ isCompleted ? 'Uncomplete' : 'Complete' }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="totalItems > itemsPerPage">
+        <button (click)="prevPage()">←</button>
+        Page: {{ currentPage }}/{{ totalPages }}
+        <button (click)="nextPage()">→</button>
+      </div>
+
+      <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
+    </ng-container>
+
+    <ng-container *ngIf="orders.length === 0">
+      <p>You have nothing to deliver</p>
+    </ng-container>
+    </div>
+</div>

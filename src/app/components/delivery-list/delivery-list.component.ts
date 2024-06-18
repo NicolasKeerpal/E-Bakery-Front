@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../services/order.service';
 import { FoodService } from '../../services/food.service';
 import { Order } from '../../models/order';
 import { Food } from '../../models/food';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss'
+  selector: 'app-delivery-list',
+  templateUrl: './delivery-list.component.html',
+  styleUrls: ['./delivery-list.component.scss']
 })
-export class CartComponent {
+export class DeliveryListComponent implements OnInit {
   orders: Order[] = [];
   foods: Food[] = [];
   displayedOrders: Order[] = [];
@@ -18,44 +18,47 @@ export class CartComponent {
   totalItems: number = 0;
   showDialog: boolean = false;
   dialogMessage: string = '';
+  isCompleted: boolean = false;
 
   constructor(
     private foodService: FoodService,
-    private orderService: OrderService
+    private orderService: OrderService,
   ) {}
 
   ngOnInit(): void {
     this.foodService.getFoods().subscribe(
       (data: Food[]) => {
         this.foods = data;
+        console.log('Products:', this.foods);
       },
       error => {
+        console.error('Error loading foods:', error);
         this.foods = [];
       }
     );
-
     this.loadOrders();
   }
 
-  getFoodName(id: number): string {
-    return this.foods[id].name;
-  }
-
-  getFoodPrice(id: number): number {
-    return this.foods[id].price;
-  }
-
   loadOrders(): void {
-    this.orderService.getCart().subscribe(
+    this.orderService.getPaidOrders().subscribe(
       (data: Order[]) => {
         this.orders = data;
         this.displayedOrders = data;
         this.totalItems = data.length;
       },
       error => {
+        console.error('Error loading orders:', error);
         this.orders = [];
       }
     );
+  }
+
+  getFoodName(id: number): string {
+    return this.foods.find(food => food.id === id)?.name || '';
+  }
+
+  finishOrder(orderId: number): void {
+    this.isCompleted = !this.isCompleted;
   }
 
   get paginatedOrders(): Order[] {
@@ -83,21 +86,7 @@ export class CartComponent {
     }
   }
 
-  deleteOrder(id: number): void {
-    this.orderService.delOrder(id).subscribe(
-      () => {
-        this.dialogMessage = "Order was deleted succesfully !";
-        this.showDialog = true;
-        this.loadOrders();
-      },
-      error => {
-        this.dialogMessage = error.message;
-        this.showDialog = true;
-      }
-    );
-  }
-
-  closeDialog() {
+  closeDialog(): void {
     this.showDialog = false;
   }
 }

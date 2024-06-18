@@ -15,7 +15,7 @@ import { UpdateProfilComponent } from '../components/update-profil/update-profil
 import { CartComponent } from '../components/cart/cart.component';
 import { OrdersListComponent } from '../components/orders-list/orders-list.component';
 import { BuyScreenComponent } from '../components/buy-screen/buy-screen.component';
-
+import { DeliveryListComponent} from '../components/delivery-list/delivery-list.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -32,6 +32,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [noAuthGuard] },
   { path: 'sign-up', component: SignUpComponent, canActivate: [noAuthGuard] },
   {path: 'about-us', component: AboutUsComponent},
+  {path: 'deliveries', component:DeliveryListComponent},
   {path: '**', component: NotFoundComponent},
 ];
 

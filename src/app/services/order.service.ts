@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class OrderService {
 
   url = "http://localhost:8000"
+  
   constructor(private http: HttpClient) { }
 
   getCart(): Observable<Order[]> {
@@ -21,6 +22,12 @@ export class OrderService {
 
   getPaidOrders(): Observable<Order[]> {
     return this.http.get<{ success: boolean, data: Order[] }>(`${this.url}/purchases/paid/all`).pipe(
+      map(response => new ExtractTabDataPipe().transform(response)) 
+    );
+  }
+
+  getDeliveryListOrders(): Observable<Order[]> {
+    return this.http.get<{ success: boolean, data: Order[] }>(`${this.url}/purchases/deliveries/all`).pipe(
       map(response => new ExtractTabDataPipe().transform(response)) 
     );
   }
