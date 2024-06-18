@@ -32,6 +32,12 @@ export class OrderService {
     );
   }
 
+  getDeliveries(): Observable<Order[]> {
+    return this.http.get<{ success: boolean, data: Order[] }>(`${this.url}/purchases/deliveries/all`).pipe(
+      map(response => new ExtractTabDataPipe().transform(response)) 
+    );
+  }
+
   addOrder(data: any) {
     return this.http.post(`${this.url}/purchases`, data);
   }

@@ -28,6 +28,7 @@ const routes: Routes = [
   { path: 'orders', component: OrdersListComponent , canActivate: [AuthByRoleGuard], data: { roles: ['customer'] } },
   { path: 'cart', component: CartComponent , canActivate: [AuthByRoleGuard], data: { roles: ['customer'] } },
   { path: 'cart/:id/buy', component: BuyScreenComponent , canActivate: [AuthByRoleGuard], data: { roles: ['customer'] } },
+  { path: 'deliveries', loadChildren: () => import('./modules/deliveries.module').then(m => m.DeliveriesModule) , canActivate: [AuthByRoleGuard], data: { roles: ['deliveryman'] } },
   { path: 'profil', component: ProfilComponent, canActivate: [AuthGuard] },  
   { path: 'profil/edit', component: UpdateProfilComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent, canActivate: [noAuthGuard] },
