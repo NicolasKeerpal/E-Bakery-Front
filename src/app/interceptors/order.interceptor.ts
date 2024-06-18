@@ -18,6 +18,7 @@ export class OrderInterceptor implements HttpInterceptor {
           }
         });
       }
+
       if (req.method == 'PUT') {
         return next.handle(clonedRequest).pipe(
           catchError((error: HttpErrorResponse) => {

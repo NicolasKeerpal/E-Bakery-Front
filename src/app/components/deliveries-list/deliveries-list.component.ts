@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
-import { OrderService } from '../../services/order.service';
 import { FoodService } from '../../services/food.service';
 import { Order } from '../../models/order';
 import { Food } from '../../models/food';
+import { OrderService } from '../../services/order.service';
+import { CustomerService } from '../../services/customer.service';
+import { Customer } from '../../models/customer';
 
 @Component({
-  selector: 'app-orders-list',
-  templateUrl: './orders-list.component.html',
-  styleUrl: './orders-list.component.scss'
+  selector: 'app-deliveries-list',
+  templateUrl: './deliveries-list.component.html',
+  styleUrl: './deliveries-list.component.scss'
 })
-export class OrdersListComponent {
+export class DeliveriesListComponent {
   orders: Order[] = [];
   foods: Food[] = [];
+  customers: Customer[] = [];
   displayedOrders: Order[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 16;
@@ -19,7 +22,7 @@ export class OrdersListComponent {
   showDialog: boolean = false;
   dialogMessage: string = '';
 
-  constructor(private foodService: FoodService, private orderService: OrderService) { }
+  constructor(private foodService: FoodService, private orderService: OrderService, private customerService: CustomerService) { }
 
   ngOnInit(): void {
     this.foodService.getFoods().subscribe(
@@ -31,6 +34,15 @@ export class OrdersListComponent {
       }
     );
 
+    this.customerService.getCustomers().subscribe(
+      (data: Customer[]) => {
+        this.customers = data;
+      },
+      error => {
+        this.customers = [];
+      }
+    );
+
     this.loadOrders();
   }
 
@@ -38,12 +50,18 @@ export class OrdersListComponent {
     return this.foods[id].name;
   }
 
-  getFoodPrice(id: number): number {
-    return this.foods[id].price;
+  getCustomerName(id: number): string {
+    const customer = this.customers[id];
+    return customer.firstname + " " + customer.lastname;
+  }
+
+  getCustomerAddress(id: number): string {
+    const customer = this.customers[id];
+    return customer.address + " " + customer.town + ", " + customer.zipCode;
   }
 
   loadOrders(): void {
-    this.orderService.getPaidOrders().subscribe(
+    this.orderService.getDeliveries().subscribe(
       (data: Order[]) => {
         this.orders = data;
         this.displayedOrders = data;
@@ -80,10 +98,14 @@ export class OrdersListComponent {
     }
   }
 
-  validateOrder(id: number): void {
-    this.orderService.validateOrder(id).subscribe(
+  closeDialog() {
+    this.showDialog = false;
+  }
+
+  finishOrder(id: number): void {
+    this.orderService.finishOrder(id).subscribe(
       () => {
-        this.dialogMessage = "Order was validated succesfully !";
+        this.dialogMessage = "Delivery was finished succesfully !";
         this.showDialog = true;
         this.loadOrders();
       },
@@ -92,9 +114,5 @@ export class OrdersListComponent {
         this.showDialog = true;
       }
     );
-  }
-
-  closeDialog() {
-    this.showDialog = false;
   }
 }
