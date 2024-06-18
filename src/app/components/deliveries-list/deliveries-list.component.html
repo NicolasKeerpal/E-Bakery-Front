@@ -1,52 +1,58 @@
-<h1>My deliveries :</h1>
+<div class="flex items-center justify-center mt-8 mb-2">
+  <div class="w-full">
+    <h1 class="text-3xl font-bold text-white pl-2">My deliveries :</h1>
 
-<ng-container *ngIf="orders.length > 0">
-    <div *ngIf="totalItems > itemsPerPage">
-        <button class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline" (click)="prevPage()"><</button>
-        Page : {{currentPage}}/{{totalPages}}
-        <button class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline" (click)="nextPage()">></button>
-    </div>
-    
-    <table class="w-full mt-4 border-collapse border border-[#533619]">
-        <thead>
-          <tr>
-            <th class="border border-[#533619] p-2">Product</th>
-            <th class="border border-[#533619] p-2">Qty</th>
-            <th class="border border-[#533619] p-2">Customer</th>
-            <th class="border border-[#533619] p-2">Due Date</th>
-            <th class="border border-[#533619] p-2">Address</th>
-            <th class="border border-[#533619] p-2">Customer's validation</th>
-            <th class="border border-[#533619] p-2">Finish</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let order of paginatedOrders">
-            <td class="border border-[#533619] p-2">{{ getFoodName(order.foodId) }}</td>
-            <td class="border border-[#533619] p-2">{{ order.qty }}</td>
-            <td class="border border-[#533619] p-2">{{ getCustomerName(order.customerId) }}</td>
-            <td class="border border-[#533619] p-2">{{ order.dueDate | date:'dd/MM/yyyy' }}</td>
-            <td class="border border-[#533619] p-2">{{ getCustomerAddress(order.customerId) }}</td>
-            <td class="border border-[#533619] p-2">
-                <button class="mt-[1rem] bg-gray-400 text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline" *ngIf="!order.validation" disabled>No validate</button>
-                <button class="mt-[1rem] bg-green-400 text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline" *ngIf="order.validation" disabled>Validated</button>
-            </td>
-            <td class="border border-[#533619] p-2">
-                <button class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline" *ngIf="!order.deliveryDate" (click)="finishOrder(order.id)">Finish</button>
-                <p *ngIf="order.deliveryDate">Finished at {{ order.deliveryDate | date:'dd/MM/yyyy' }}</p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    
-    <div *ngIf="totalItems > itemsPerPage">
-      <button class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline" (click)="prevPage()"><</button>
-      Page : {{currentPage}}/{{totalPages}}
-      <button class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline" (click)="nextPage()">></button>
-    </div>
-      
-    <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
-</ng-container>
+    <ng-container *ngIf="orders.length > 0">
+        <div *ngIf="totalItems > itemsPerPage">
+            <button class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline" (click)="prevPage()"><</button>
+            Page : {{currentPage}}/{{totalPages}}
+            <button class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline" (click)="nextPage()">></button>
+        </div>
+        
+        <table class="w-full mt-4 border-collapse">
+            <thead>
+              <tr>
+                <th class="p-2 text-white">Product</th>
+                <th class="p-2 text-white">Qty</th>
+                <th class="p-2 text-white">Customer</th>
+                <th class="p-2 text-white">Due Date</th>
+                <th class="p-2 text-white">Address</th>
+                <th class="p-2 text-white">Customer's validation</th>
+                <th class="p-2 text-white">Finish</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let order of paginatedOrders; let i = index" class="{{ i % 2 === 0 ? 'bg-custom-secondary_color' : 'bg-custom-primary' }}">
+              <tr class="{{ i % 2 === 0 ? 'bg-custom-secondary_color' : 'bg-custom-primary' }}">
+                <td class=" p-2 text-white text-center">{{ getFoodName(order.foodId) }}</td>
+                <td class=" p-2 text-white text-center">{{ order.qty }}</td>
+                <td class=" p-2 text-white text-center">{{ getCustomerName(order.customerId) }}</td>
+                <td class=" p-2 text-white text-center">{{ order.dueDate | date:'dd/MM/yyyy' }}</td>
+                <td class=" p-2 text-white text-center">{{ getCustomerAddress(order.customerId) }}</td>
+                <td class=" p-2 text-white text-center">
+                    <button class="mt-[1rem] bg-gray-400 text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline" *ngIf="!order.validation" disabled>No validate</button>
+                    <button class="mt-[1rem] bg-green-400 text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline" *ngIf="order.validation" disabled>Validated</button>
+                </td>
+                <td>
+                    <button class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline" *ngIf="!order.deliveryDate" (click)="finishOrder(order.id)">Finish</button>
+                    <p *ngIf="order.deliveryDate">Finished at {{ order.deliveryDate | date:'dd/MM/yyyy' }}</p>
+                </td>
+              </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        
+        <div *ngIf="totalItems > itemsPerPage">
+          <button class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline" (click)="prevPage()"><</button>
+          Page : {{currentPage}}/{{totalPages}}
+          <button class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline" (click)="nextPage()">></button>
+        </div>
+          
+        <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
+    </ng-container>
 
-<ng-container *ngIf="orders.length == 0">
-  <p>You have no deliveries</p>
-</ng-container>
+    <ng-container *ngIf="orders.length == 0">
+      <p>You have no deliveries</p>
+    </ng-container>
+  </div>
+</div>
