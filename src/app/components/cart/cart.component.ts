@@ -19,7 +19,10 @@ export class CartComponent {
   showDialog: boolean = false;
   dialogMessage: string = '';
 
-  constructor(private foodService: FoodService,private orderService: OrderService) { }
+  constructor(
+    private foodService: FoodService,
+    private orderService: OrderService
+  ) {}
 
   ngOnInit(): void {
     this.foodService.getFoods().subscribe(

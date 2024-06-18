@@ -17,7 +17,6 @@ import { CartComponent } from '../components/cart/cart.component';
 import { OrdersListComponent } from '../components/orders-list/orders-list.component';
 import { BuyScreenComponent } from '../components/buy-screen/buy-screen.component';
 
-
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'our-products', component: OurProductsComponent },

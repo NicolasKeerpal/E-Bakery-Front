@@ -1,22 +1,52 @@
 <ng-container *ngIf="food">
-    <p>{{ food.name }}</p>
-
-    <ng-container *ngIf="userRole=='admin'">
-        <button>Modify</button>
-        <button>Delete</button>
-    </ng-container>
-    <ng-container *ngIf="userRole=='customer'">
-            <button (click)="addCart()">Add cart</button>
-            <button (click)="delNb()">-</button>
-            {{ addNumber }}
-            <button (click)="addNb()">+</button>
-    </ng-container>
-    <ng-container *ngIf="userRole==null">
-        <p>Login to order ! <a routerLink="/login" class="text-custom-hover_effect hover:underline">Login</a></p>
-    </ng-container>
-
-    <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
-<app-redirection-dialog [message]="dialogMessage" [showRedirectionDialog]="showRedirectionDialog" [redirectUrl]="'/cart'" (closeRedictionDialog)="closeRedirectionDialog()"></app-redirection-dialog>
-</ng-container>
-
-<app-not-found *ngIf="!food"></app-not-found>
+    <div class="w-[80rem] mx-auto mt-8 p-6 bg-custom-secondary_color shadow-md rounded-lg flex">
+      <!-- Image on the left side -->
+      <div class="w-[30rem]">
+        <img [src]="food.image" alt="{{ food.name }}" class="w-full h-auto">
+      </div>
+  
+      <!-- Text content on the right side -->
+      <div class="ml-[5rem] flex-1 ">
+        <p class="text-[3rem] font-bold mb-4 text-center">{{ food.name }}</p>
+  
+        <p class="text-[1.2rem]">Prix : {{ food.price | price : '€' }}</p>
+        <p class=" mt-[0.5rem] text-[1.2rem]">Description :</p>
+        <p>{{ food.description }}</p>
+  
+        <ng-container *ngIf="userRole == 'admin'" class="mt-[1.5rem]">
+          <button class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline">
+            Modify
+          </button>
+          <button class="mt-[1rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline">
+            Delete
+          </button>
+        </ng-container>
+  
+        <ng-container *ngIf="userRole == 'customer'" >
+          <button (click)="addCart()" class="mt-[1.5rem] bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[0.5rem] mr-2 focus:outline-none focus:shadow-outline">
+            Add to Cart
+          </button>
+          <button (click)="delNb()" class="bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[100%] mr-2 focus:outline-none focus:shadow-outline">
+            -
+          </button>
+          <span class="text-xl">{{ addNumber }}</span>
+          <button (click)="addNb()" class="bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-[100%] ml-2 focus:outline-none focus:shadow-outline">
+            +
+          </button>
+        </ng-container>
+  
+        <ng-container *ngIf="!userRole">
+          <p class="text-red-500 text-lg font-bold mt-4">
+            Login to order! <a routerLink="/login" class="text-blue-500 hover:underline">Login</a>
+          </p>
+        </ng-container>
+  
+        <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
+        <app-redirection-dialog [message]="dialogMessage" [showRedirectionDialog]="showRedirectionDialog" [redirectUrl]="'/cart'" (closeRedirectionDialog)="closeRedirectionDialog()"></app-redirection-dialog>
+      </div>
+    </div>
+  </ng-container>
+  
+  
+    <app-not-found *ngIf="!food"></app-not-found>
+  

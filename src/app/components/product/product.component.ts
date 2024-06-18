@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrl: './product.component.scss'
+  styleUrls: ['./product.component.scss']
 })
 export class ProductComponent {
   food: Food | null = null;
@@ -18,7 +18,12 @@ export class ProductComponent {
   showRedirectionDialog: boolean = false;
   dialogMessage: string = '';
 
-  constructor(private route: ActivatedRoute, private foodService: FoodService, private authService: AuthService, private orderService: OrderService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private foodService: FoodService,
+    private authService: AuthService,
+    private orderService: OrderService
+  ) {}
 
   ngOnInit(): void {
     this.userRole = this.authService.getRole();
@@ -37,13 +42,13 @@ export class ProductComponent {
   }
 
   addNb(): void {
-    if (this.addNumber!=100) {
+    if (this.addNumber != 100) {
       this.addNumber++;
     }
   }
 
   delNb(): void {
-    if (this.addNumber!=1) {
+    if (this.addNumber != 1) {
       this.addNumber--;
     }
   }
@@ -75,11 +80,11 @@ export class ProductComponent {
     );
   }
 
-  closeDialog() {
+  closeDialog(): void {
     this.showDialog = false;
   }
 
-  closeRedirectionDialog() {
+  closeRedirectionDialog(): void {
     this.showRedirectionDialog = false;
   }
 }

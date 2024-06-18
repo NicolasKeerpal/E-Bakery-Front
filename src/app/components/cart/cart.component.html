@@ -1,46 +1,51 @@
-<h1>My cart :</h1>
+<div class="flex items-center justify-center mt-8 mb-2">
+  <div class="w-full">
+    <h1 class="text-3xl font-bold text-white pl-2">My cart :</h1>
 
-<ng-container *ngIf="orders.length > 0">
-    <div *ngIf="totalItems > itemsPerPage">
-        <button (click)="prevPage()"><</button>
-        Page : {{currentPage}}/{{totalPages}}
-        <button (click)="nextPage()">></button>
-    </div>
-    
-    <table class="w-full mt-4 border-collapse border border-[#533619]">
+    <ng-container *ngIf="orders.length > 0">
+      <div *ngIf="totalItems > itemsPerPage" class="flex items-center justify-between mt-4">
+        <button (click)="prevPage()" class="px-4 py-2 bg-[#533619] text-white rounded hover:bg-opacity-75 focus:outline-none">&lt;</button>
+        <span class="text-white">Page : {{currentPage}}/{{totalPages}}</span>
+        <button (click)="nextPage()" class="px-4 py-2 bg-[#533619] text-white rounded hover:bg-opacity-75 focus:outline-none">&gt;</button>
+      </div>
+      
+      <table class="w-full mt-4 border-collapse">
         <thead>
           <tr>
-            <th class="border border-[#533619] p-2">Product</th>
-            <th class="border border-[#533619] p-2">Qty</th>
-            <th class="border border-[#533619] p-2">Buy</th>
-            <th class="border border-[#533619] p-2">Delete</th>
-            <th class="border border-[#533619] p-2">Price</th>
+            <th class="p-2 text-white">Product</th>
+            <th class="p-2 text-white">Qty</th>
+            <th class="p-2 text-white">Buy</th>
+            <th class="p-2 text-white">Delete</th>
+            <th class="p-2 text-white">Price</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let order of paginatedOrders">
-            <td class="border border-[#533619] p-2">{{ getFoodName(order.foodId) }}</td>
-            <td class="border border-[#533619] p-2">{{ order.qty }}</td>
-            <td class="border border-[#533619] p-2">
-              <button [routerLink]="['/cart', order.id, 'buy']">Buy</button>
+          <ng-container *ngFor="let order of paginatedOrders; let i = index" class="{{ i % 2 === 0 ? 'bg-custom-secondary_color' : 'bg-custom-primary' }}">
+          <tr class="{{ i % 2 === 0 ? 'bg-custom-secondary_color' : 'bg-custom-primary' }}">
+            <td class=" p-2 text-white text-center">{{ getFoodName(order.foodId) }}</td>
+            <td class=" p-2 text-white text-center">{{ order.qty }}</td>
+            <td class=" p-2 text-white text-center">
+              <button [routerLink]="['/cart', order.id, 'buy']" class="px-4 py-2 bg-[#533619] text-white rounded hover:bg-opacity-75 focus:outline-none">Buy</button>
             </td>
-            <td class="border border-[#533619] p-2">
-              <button (click)="deleteOrder(order.id)">Delete</button>
+            <td class=" p-2 text-white text-center">
+              <button (click)="deleteOrder(order.id)" class="px-4 py-2 bg-[#533619] text-white rounded hover:bg-opacity-75 focus:outline-none">Delete</button>
             </td>
-            <td class="border border-[#533619] p-2">{{ getFoodPrice(order.foodId) | price : "€" }}</td>
+            <td class=" p-2 text-white text-center">{{ getFoodPrice(order.foodId) | price : "€" }}</td>
           </tr>
-        </tbody>
-      </table>
-    
-    <div *ngIf="totalItems > itemsPerPage">
-      <button (click)="prevPage()"><</button>
-      Page : {{currentPage}}/{{totalPages}}
-      <button (click)="nextPage()">></button>
-    </div>
+        </ng-container>
+    </table>
       
-    <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
-</ng-container>
-
-<ng-container *ngIf="orders.length==0">
-<p>You have nothing to add to your cart</p>
-</ng-container>
+      <div *ngIf="totalItems > itemsPerPage" class="flex items-center justify-between mt-4">
+        <button (click)="prevPage()" class="px-4 py-2 bg-custom-primary_color text-white rounded hover:bg-opacity-75 focus:outline-none">&lt;</button>
+        <span class="text-white">Page : {{currentPage}}/{{totalPages}}</span>
+        <button (click)="nextPage()" class="px-4 py-2 bg-custom-primary_color text-white rounded hover:bg-opacity-75 focus:outline-none">&gt;</button>
+      </div>
+      
+      <app-dialog [message]="dialogMessage" [showDialog]="showDialog" (closeDialog)="closeDialog()"></app-dialog>
+    </ng-container>
+    
+    <ng-container *ngIf="orders.length === 0">
+      <p class="text-white mt-4">You have nothing to add to your cart.</p>
+    </ng-container>
+  </div>
+</div>
