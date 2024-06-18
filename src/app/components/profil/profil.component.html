@@ -82,7 +82,8 @@
                         <div class="flex-1">
                             <p class="text-white font-semibold">End of Contract</p>
                             <div class="border-4 border-custom-secondary_color bg-transparent text-white p-2 rounded">
-                                <p>{{ employee?.endContract }}</p>
+                                <p *ngIf="employee?.endContract">{{ employee?.endContract }}</p>
+                                <p *ngIf="!employee?.endContract">Undetermined</p>
                             </div>
                         </div>
                     </div>
