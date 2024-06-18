@@ -32,6 +32,7 @@ import { UpdateProfilComponent } from './components/update-profil/update-profil.
 import { OrdersListComponent } from './components/orders-list/orders-list.component';
 import { DueDateFormatPipe } from './pipes/due-date-format.pipe';
 import { BuyScreenComponent } from './components/buy-screen/buy-screen.component';
+import { UpdateFoodComponent } from './components/update-food/update-food.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { BuyScreenComponent } from './components/buy-screen/buy-screen.component
     OrdersListComponent,
     DueDateFormatPipe,
     BuyScreenComponent,
+    UpdateFoodComponent,
   ],
   imports: [
     BrowserModule,
