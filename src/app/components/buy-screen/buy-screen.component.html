@@ -1,15 +1,33 @@
 <ng-container *ngIf="order">
     <h1>Purchase</h1>
     <form [formGroup]="buyForm" (ngSubmit)="onSubmit()">
-        <label for="hour">Delivery hour wanted:</label>
-        <input type="text" id="hour" name="hour" formControlName="hour" style="background-color: white; color: black; width: 100%; padding: 8px;">
-        <br>
-        <label for="number">Number:</label>
-        <input type="text" id="number" name="number" formControlName="number" style="background-color: white; color: black; width: 100%; padding: 8px;">
-        <br>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" formControlName="name" style="background-color: white; color: black; width: 100%; padding: 8px;">
-        <br>
+        <div class="mb-4">
+            <label for="hour">Delivery hour wanted (*):</label>
+            <input type="text" id="hour" name="hour" formControlName="hour" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+            <div *ngIf="buyForm.get('hour')?.invalid && buyForm.get('hour')?.touched">
+                <small *ngIf="buyForm.get('hour')?.errors?.['pattern']" class="text-red-500 font-bold">Invalid hour format (Expected format : 00:00).</small>
+                <small *ngIf="buyForm.get('hour')?.errors?.['required']" class="text-red-500 font-bold">Hour is required.</small>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label for="number">Number on card (*):</label>
+            <input type="text" id="number" name="number" formControlName="number" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+            <div *ngIf="buyForm.get('number')?.invalid && buyForm.get('number')?.touched">
+                <small *ngIf="buyForm.get('number')?.errors?.['pattern']" class="text-red-500 font-bold">Invalid Number format.</small>
+                <small *ngIf="buyForm.get('number')?.errors?.['required']" class="text-red-500 font-bold">Number is required.</small>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label for="name">Name on card (*):</label>
+            <input type="text" id="name" name="name" formControlName="name" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+            <div *ngIf="buyForm.get('name')?.invalid && buyForm.get('name')?.touched">
+                <small *ngIf="buyForm.get('name')?.errors?.['pattern']" class="text-red-500 font-bold">Invalid Name format (Expected format : Firstname Lastname).</small>
+                <small *ngIf="buyForm.get('name')?.errors?.['required']" class="text-red-500 font-bold">Name is required.</small>
+            </div>
+        </div>
+
         <button type="submit">Buy</button>
     </form>
     

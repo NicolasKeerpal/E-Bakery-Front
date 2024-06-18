@@ -15,13 +15,13 @@ export class SignUpComponent {
 
   constructor(private formBuilder: FormBuilder, private customerService: CustomerService) {
     this.signUpForm = this.formBuilder.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      mail: ['', Validators.required],
+      firstname: ['', [Validators.required, Validators.pattern(/^[A-Z][a-zéèêîiàâôûùç]+(-[A-Z][a-zéèêîiàâôûùç]+)*$/)]],
+      lastname: ['', [Validators.required, Validators.pattern(/^[A-Z][a-zéèêîiàâôûùç]+(-[A-Z][a-zéèêîiàâôûùç]+)*$/)]],
+      mail: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
-      zipCode: ['01000', Validators.required],
+      zipCode: ['01000', [Validators.required, Validators.min(1000), Validators.max(98999), Validators.pattern(/^-?\d+$/)]],
       address: ['', Validators.required],
-      town: ['', Validators.required]
+      town: ['', [Validators.required, Validators.pattern(/^[A-Z][a-zéèêîiàâôûùç]+(-[A-Z][a-zéèêîiàâôûùç]+)*$/)]]
     });
   }
 
@@ -45,8 +45,7 @@ export class SignUpComponent {
         }
       );
     } else {
-      this.dialogMessage = 'Please fill in all required fields.';
-      this.showDialog = true;
+      this.signUpForm.markAllAsTouched();
     }
   }
 

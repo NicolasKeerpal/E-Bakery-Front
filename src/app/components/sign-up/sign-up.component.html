@@ -4,38 +4,66 @@
   
       <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="max-w-sm mx-auto">
         <div class="mb-4">
-          <label for="firstname" class="block mb-1 text-white text-left">First Name:</label>
+          <label for="firstname" class="block mb-1 text-white text-left">First name (*):</label>
           <input type="text" id="firstname" name="firstname" formControlName="firstname" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+          <div *ngIf="signUpForm.get('firstname')?.invalid && signUpForm.get('firstname')?.touched">
+            <small *ngIf="signUpForm.get('firstname')?.errors?.['required']" class="text-red-500 font-bold">First name is required.</small>
+            <small *ngIf="signUpForm.get('firstname')?.errors?.['pattern']" class="text-red-500 font-bold">Invalid First name format (The first letter as well as the letter after - must start with a capital letter and the rest must be in lower case.).</small>
+          </div>
         </div>
   
         <div class="mb-4">
-          <label for="lastname" class="block mb-1 text-white text-left">Last Name:</label>
+          <label for="lastname" class="block mb-1 text-white text-left">Last name (*):</label>
           <input type="text" id="lastname" name="lastname" formControlName="lastname" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+          <div *ngIf="signUpForm.get('lastname')?.invalid && signUpForm.get('lastname')?.touched">
+            <small *ngIf="signUpForm.get('lastname')?.errors?.['required']" class="text-red-500 font-bold">Last name is required.</small>
+            <small *ngIf="signUpForm.get('lastname')?.errors?.['pattern']" class="text-red-500 font-bold">Invalid Last name format (The first letter as well as the letter after - must start with a capital letter and the rest must be in lower case.).</small>
+          </div>
         </div>
   
         <div class="mb-4">
-          <label for="mail" class="block mb-1 text-white text-left">Mail:</label>
+          <label for="mail" class="block mb-1 text-white text-left">Mail (*):</label>
           <input type="email" id="mail" name="mail" formControlName="mail" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+          <div *ngIf="signUpForm.get('mail')?.invalid && signUpForm.get('mail')?.touched">
+            <small *ngIf="signUpForm.get('mail')?.errors?.['required']" class="text-red-500 font-bold">Email is required.</small>
+            <small *ngIf="signUpForm.get('mail')?.errors?.['email']" class="text-red-500 font-bold">Invalid email format.</small>
+          </div>
         </div>
   
         <div class="mb-4">
-          <label for="password" class="block mb-1 text-white text-left">Password:</label>
+          <label for="password" class="block mb-1 text-white text-left">Password (*):</label>
           <input type="password" id="password" name="password" formControlName="password" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+          <div *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched">
+            <small *ngIf="signUpForm.get('password')?.errors?.['required']" class="text-red-500 font-bold">Password is required.</small>
+          </div>
         </div>
   
         <div class="mb-4">
-          <label for="zipCode" class="block mb-1 text-white text-left">Zip Code:</label>
+          <label for="zipCode" class="block mb-1 text-white text-left">Zip Code (*):</label>
           <input type="text" id="zipCode" name="zipCode" formControlName="zipCode" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+          <div *ngIf="signUpForm.get('zipCode')?.invalid && signUpForm.get('zipCode')?.touched">
+            <small *ngIf="signUpForm.get('zipCode')?.errors?.['required']" class="text-red-500 font-bold">Zip code is required.</small>
+            <small *ngIf="signUpForm.get('zipCode')?.errors?.['pattern']" class="text-red-500 font-bold">Invalid Zip code format (Between 01000 and 98999).</small>
+            <small *ngIf="signUpForm.get('zipCode')?.errors?.['min']" class="text-red-500 font-bold">Zip code must be between 01000 and 98999.</small>
+            <small *ngIf="signUpForm.get('zipCode')?.errors?.['max']" class="text-red-500 font-bold">Zip code must be between 01000 and 98999.</small>
+          </div>
         </div>
   
         <div class="mb-4">
-          <label for="address" class="block mb-1 text-white text-left">Address:</label>
+          <label for="address" class="block mb-1 text-white text-left">Address (*):</label>
           <input type="text" id="address" name="address" formControlName="address" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+          <div *ngIf="signUpForm.get('address')?.invalid && signUpForm.get('address')?.touched">
+            <small *ngIf="signUpForm.get('address')?.errors?.['required']" class="text-red-500 font-bold">Address is required.</small>
+          </div>
         </div>
   
         <div class="mb-4">
-          <label for="town" class="block mb-1 text-white text-left">Town:</label>
+          <label for="town" class="block mb-1 text-white text-left">Town (*):</label>
           <input type="text" id="town" name="town" formControlName="town" class="w-full px-3 py-2 bg-white text-black rounded-md border border-gray-300 focus:outline-none focus:border-blue-500">
+          <div *ngIf="signUpForm.get('town')?.invalid && signUpForm.get('town')?.touched">
+            <small *ngIf="signUpForm.get('town')?.errors?.['required']" class="text-red-500 font-bold">Town is required.</small>
+            <small *ngIf="signUpForm.get('town')?.errors?.['pattern']" class="text-red-500 font-bold">Invalid Town format (The first letter as well as the letter after - must start with a capital letter and the rest must be in lower case.).</small>
+          </div>
         </div>
   
         <button type="submit" class="w-full bg-custom-primary_color hover:bg-custom-hover_effect text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
