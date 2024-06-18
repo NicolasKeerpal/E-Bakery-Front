@@ -1,5 +1,9 @@
 # E-Bakery Online Delivery Service
 
+## /!\ WARNING /!\
+
+Don't delete admin account because if you do this, you'll have to delete the database and recreate it, then restart the api.
+
 ## Project Overview
 
 Welcome to E-Bakery, an online bakery platform that allows customers to have delicious baked goods delivered right to their doorsteps. This README will guide you through the installation, setup, and usage of the project.
@@ -71,6 +75,36 @@ The site has three main roles: **Admin**, **Customer**, and **Deliveryman**.
 - **View Deliveries:** Deliverymen can see their assigned deliveries in the `Deliveries` tab.
 - **Complete Deliveries:** They can mark deliveries as finished by clicking the `Finish` button.
 - **Customer Confirmation:** After a delivery is marked as finished, customers can validate the delivery in the `Orders` tab by clicking `Validate`.
+
+### All
+
+- **View Profile:** See profile in the `profil` tab.
+- **Modify profile:** Only for admin and customer.
+- **Delete account:** Only for admin and customer.
+
+## Accounts :
+
+Customer : 
+- mail: klie.yen@gmail.com password: mdp
+
+Admin : 
+- mail: yacowan.keebrady@gmail.com password: mdp
+
+Deliveryman (password: mdp for all): 
+id	firstname	lastname	mail
+2	Hamp	Loyé	hamp.loye@gmail.com	
+3	Ali	Expe-Rèss	ali.er@gmail.com
+5	Mana	Jeur	mana.jeur@gmail.com	
+6	Hubert	Ite	hubert.ite@gmail.com	
+7	Délie	Vérroux	delie.verroux@gmail.com
+10	Luc	Martin	luc.martin@gmail.com	
+11	Sylvie	Rouge	sylvie.rouge@gmail.com	
+14	Olivier	Jaune	olivier.jaune@gmail.com	
+15	Sophie	Verte	sophie.verte@gmail.com	
+16	Thomas	Violet	thomas.violet@gmail.com	
+18	Farid	Bleu	farid.bleu@gmail.com	
+19	Isabelle	Marron	isabelle.marron@gmail.com	
+20	Vincent	Rougeot	vincent.rougeot@gmail.com	
 
 ## Known Bugs
 
